@@ -1,0 +1,33 @@
+{
+  "name": "visualyzer-backend",
+  "version": "1.0.0",
+  "description": "Get the visuals analyzed",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephlijo/visualyzer.git"
+  },
+  "keywords": [
+    "visual",
+    "cognitive",
+    "azure",
+    "nodejs"
+  ],
+  "author": "LJ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josephlijo/visualyzer/issues"
+  },
+  "homepage": "https://github.com/josephlijo/visualyzer#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
