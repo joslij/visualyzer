@@ -1,0 +1,23 @@
+{
+  "name": "visualyzer-frontend",
+  "version": "1.0.0",
+  "description": "Get the visuals analyzed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephlijo/visualyzer.git"
+  },
+  "keywords": [
+    "react",
+    "javascript"
+  ],
+  "author": "LJ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josephlijo/visualyzer/issues"
+  },
+  "homepage": "https://github.com/josephlijo/visualyzer#readme"
+}
