@@ -8,3 +8,7 @@ Microsoft automatically deletes your images and videos after processing and does
 ```
 It is recommended that you read their [privacy policy](https://azure.microsoft.com/en-gb/support/legal/cognitive-services-compliance-and-privacy/).
 
+# Image requirements
+- The image must be presented in JPEG, PNG, GIF, or BMP format
+- The file size of the image must be less than 4 megabytes (MB)
+- The dimensions of the image must be greater than 50 x 50 pixels
