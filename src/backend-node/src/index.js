@@ -1,7 +1,7 @@
 const express = require("express");
-const dotenvConfig = require("dotenv").config();
-const placesApi = require("./controllers/places");
-const animalsApi = require("./controllers/animals");
+require("dotenv").config();
+const categoriesRoute = require("./controllers/categories");
+const imageAnalysisApi = require("./analysis/imageAnalysis");
 
 const app = express();
 
@@ -11,8 +11,8 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/api", placesApi);
-app.use("/api", animalsApi);
+app.use("/api", categoriesRoute);
+app.use("/api", imageAnalysisApi);
 
 app.listen(3000, () => {
   console.log("Server is listening at port 3000");

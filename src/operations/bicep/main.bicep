@@ -35,12 +35,22 @@ module keyVault 'resources/keyvault.bicep' = {
     principalId: principalId
     storageAccount: storageAccount.outputs.storageAccount
     cosmosDbAccount: cosmosDbAccount.outputs.cosmosDbAccount
+    computerVision: computerVision.outputs.computerVision
   }
 }
 
 // Cosmos DB
 module cosmosDbAccount 'resources/cosmosdb.bicep' = {
   name: '${appname}-resources-cosmosdb'
+  scope: rg
+  params: {
+    appname: appname
+  }
+}
+
+// Computer Vision
+module computerVision 'resources/computervision.bicep' = {
+  name: '${appname}-resources-computervision'
   scope: rg
   params: {
     appname: appname
