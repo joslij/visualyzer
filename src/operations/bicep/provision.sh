@@ -1,0 +1,1 @@
+az deployment sub create --debug -n ${APP_NAME} -l ${REGION} -f main.bicep -p appname=${APP_NAME} location=${REGION} principalId=${CLI_USER_ID}

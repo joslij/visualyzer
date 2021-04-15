@@ -1,0 +1,57 @@
+targetScope = 'subscription'
+
+@minLength(1)
+@maxLength(10)
+@description('The name of the application which will be used as prefix for resource names')
+param appname string
+
+@description('The primary location for all the resources')
+param location string = 'uksouth'
+
+@minLength(1)
+param principalId string
+
+// Resource Group
+resource rg 'Microsoft.Resources/resourceGroups@2021-01-01' = {
+  name: '${appname}-rg'
+  location: location
+}
+
+// Storage Account
+module storageAccount 'resources/storageaccount.bicep' = {
+  name: '${appname}-resources-stracc'
+  scope: rg
+  params: {
+    appname: appname
+  }
+}
+
+// Key Vault
+module keyVault 'resources/keyvault.bicep' = {
+  name: '${appname}-resources-kv'
+  scope: rg
+  params: {
+    appname: appname
+    principalId: principalId
+    storageAccount: storageAccount.outputs.storageAccount
+    cosmosDbAccount: cosmosDbAccount.outputs.cosmosDbAccount
+  }
+}
+
+// Cosmos DB
+module cosmosDbAccount 'resources/cosmosdb.bicep' = {
+  name: '${appname}-resources-cosmosdb'
+  scope: rg
+  params: {
+    appname: appname
+  }
+}
+
+// App service plan and app
+module appService 'resources/appservice.bicep' = {
+  name: '${appname}-resources-appservice'
+  scope: rg
+  params: {
+    appname: appname
+  }
+}
