@@ -1,10 +1,45 @@
+const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env) => {
   return {
+    entry: "./src/index.js",
+    output: {
+      filename: "main.js",
+      path: path.resolve(__dirname, "dist"),
+      clean: true,
+      assetModuleFilename: "[name]-[hash:8][ext]",
+    },
     mode: env.mode,
     target: "web",
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "./public/index.html",
+        buildTime: new Date().toString(),
+      }),
+      new MiniCssExtractPlugin({
+        filename: "[name]-[hash:8].css",
+      }),
+      new webpack.ProvidePlugin({
+        React: "react",
+      }),
+    ],
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            format: {
+              comments: false,
+            },
+          },
+          extractComments: false,
+        }),
+      ],
+    },
     module: {
       rules: [
         {
@@ -16,7 +51,6 @@ module.exports = (env) => {
             },
           ],
         },
-
         {
           test: /\.css$/,
           use: [MiniCssExtractPlugin.loader, "css-loader"],
@@ -26,42 +60,20 @@ module.exports = (env) => {
           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
         {
-          test: /\.(jpg|jpeg|png|gif)$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                outputPath: "images",
-                name: "[name]-[sha1:hash:7].[ext]",
-              },
-            },
-          ],
+          test: /\.(jpeg|png|gif|bmp)$/,
+          type: "asset/resource",
+          generator: {
+            filename: "images/[name]-[hash:8][ext]",
+          },
         },
-
         {
           test: /\.(ttf|woff|eot|otf)$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                outputPath: "fonts",
-                name: "[name].[ext]",
-              },
-            },
-          ],
+          type: "asset/resource",
+          generator: {
+            filename: "fonts/[name]-[hash:8][ext]",
+          },
         },
       ],
     },
-
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: "public/index.html",
-        buildTime: new Date().toString(),
-      }),
-
-      new MiniCssExtractPlugin({
-        filename: "main-[hash:8].css",
-      }),
-    ],
   };
 };

@@ -40,3 +40,50 @@ It is recommended that you read their [privacy policy](https://azure.microsoft.c
 
 - Run bicep
 - Setup app - https://github.com/Azure-Samples/ms-identity-node#register-the-application
+
+## Testing
+
+The front-end application covers the following test types:
+
+![4 types of JavaScript Tests](/docs/images/FourTypesOfTests.png){ width=5px; height: 5px }
+
+**Credits**: [Testing JavaScript](https://testingjavascript.com/)
+
+## Static Testing
+
+### Linting
+
+```
+Linting is the process of running a program that will analyse code for potential errors.
+```
+
+Tools that are used and their purposes are described below.
+
+1. [ESLint](https://eslint.org/docs/user-guide/getting-started)
+
+   - **Setup**: `npm install eslint --save-dev`
+   - **Configure**: `npx eslint --init` - it will create a `.eslintrc.js` file if you prefer to save it as `js` file.
+   - **Configure** - add `.eslintignore` to avoid _paths_ to be ignored from _linting_. This normally includes **node_modules**
+   - **Analyze** -
+
+     - **Advantages**: fsdfsdfs
+     - **Disadvantages**: dfsdfsdfs
+
+   - Can identify "non-standard" patterns used in JavaScript
+   - Can be used with CI pipelines (TODO:// CLARIFY PLEASE)
+
+## Unit Testing
+
+TODO://
+
+## Integration Testing
+
+TODO://
+
+## End to End Testing
+
+TODO://
+
+# References
+
+1. [State of JavaScript Testing](https://2020.stateofjs.com/en-US/technologies/testing/)
