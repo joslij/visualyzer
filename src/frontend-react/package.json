@@ -9,7 +9,7 @@
     "start": "webpack serve",
     "start:dev": "webpack serve --env mode=development --open chrome",
     "test": "eslint. && jest --no-cache",
-    "test:static": "eslint .",
+    "test:static": "eslint . && prettier --write .",
     "test:unit": "jest --watchAll --no-cache"
   },
   "repository": {
@@ -35,10 +35,12 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.1",
     "eslint": "^7.24.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "html-webpack-plugin": "^5.3.1",
     "jest": "^26.6.3",
     "mini-css-extract-plugin": "^1.4.1",
+    "prettier": "^2.2.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
