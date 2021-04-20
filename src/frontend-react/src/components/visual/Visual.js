@@ -1,26 +1,46 @@
 import React from "react";
-import { Grid, Image } from "semantic-ui-react";
+import { Grid, Image, Search, Segment } from "semantic-ui-react";
 
-import WireframeParagraphImage from "../../assets/wireframe/paragraph.png";
-
-const Visual = () => {
+const Visual = ({
+  url,
+  description,
+  categories,
+  tags,
+  celebrities,
+  landmarks,
+}) => {
   return (
-    <Grid divided="vertically">
-      <Grid.Row columns={2}>
-        <Grid.Column>
-          <Image src={WireframeParagraphImage} />
-        </Grid.Column>
-        <Grid.Column>todo:// Description, Categories and tags</Grid.Column>
-      </Grid.Row>
+    <Segment raised>
+      <Grid container>
+        <Grid divided="vertically" padded>
+          <Grid.Row columns={1}>
+            <Grid.Column>
+              <Search />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row columns={3}>
+            <Grid.Column>
+              <Image src={url} />
+            </Grid.Column>
+            <Grid.Column>
+              {description ?? <i>No description available!</i>}
+            </Grid.Column>
+            <Grid.Column>
+              todo:// social impact - to use twitter/instagram/facebook
+            </Grid.Column>
+          </Grid.Row>
 
-      <Grid.Row columns={2}>
-        <Grid.Column>Here comes Celebrities!</Grid.Column>
-        <Grid.Column>Here comes landmarks!</Grid.Column>
-        <Grid.Column>
-          <Image src={WireframeParagraphImage} />
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+          <Grid.Row columns={3}>
+            <Grid.Column>Here comes Celebrities!</Grid.Column>
+            <Grid.Column>Here comes landmarks!</Grid.Column>
+            <Grid.Column>
+              Action buttons to get detailed analysis (like/something opposite -
+              but need login)
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Grid>
+    </Segment>
   );
 };
 
