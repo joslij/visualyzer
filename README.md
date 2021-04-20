@@ -35,6 +35,14 @@ It is recommended that you read their [privacy policy](https://azure.microsoft.c
 
 # Developer notes
 
+## Authentication
+
+- The application has three types of users
+  - Admins users (user's configured in Azure AD group). They can upload photos for analysis and make it public to view, delete photos, etc.
+  - Public users - Users can view all images that are made public by the admin users
+  - Users - Users that are logged in using supported social identity providers (Facebook, Google, Microsoft) and has created a profile. They can upload their own photos and get insights on them.
+- Authentication library
+  - [msal-node](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-node), the Microsoft Authentication Library for Node will be used to authentication users using Azure AD (admin users), and social identity
 - Register the `visualyzer` application in Azure AD. See [documentation](https://docs.microsoft.com/en-gb/azure/active-directory/develop/quickstart-register-app) for registering application.
   Reference for this specific applicaiton can be found here [here](https://github.com/Azure-Samples/ms-identity-node#register-the-application)
 
