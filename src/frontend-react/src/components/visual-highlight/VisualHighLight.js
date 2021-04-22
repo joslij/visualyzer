@@ -1,10 +1,10 @@
 import { Card } from "semantic-ui-react";
 
-const VisualHighlight = (header, meta, description) => {
+const VisualHighlight = (name, meta, description) => {
   return (
     <Card>
       <Card.Content>
-        <Card.Header>{header}</Card.Header>
+        {name && <Card.Header>{name}</Card.Header>}
         {meta && <Card.Meta>{meta}</Card.Meta>}
         {description && <Card.Description>{description}</Card.Description>}
       </Card.Content>

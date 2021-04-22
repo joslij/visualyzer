@@ -1,5 +1,7 @@
 import React from "react";
-import { Grid, Image, Search, Segment } from "semantic-ui-react";
+import { Grid, Image, Segment } from "semantic-ui-react";
+import VisualHighlight from "../visual-highlight/VisualHighLight";
+import VisualSearch from "../visual-search";
 
 const Visual = ({
   url,
@@ -15,7 +17,7 @@ const Visual = ({
         <Grid divided="vertically" padded>
           <Grid.Row columns={1}>
             <Grid.Column>
-              <Search />
+              <VisualSearch />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={3}>
@@ -31,7 +33,16 @@ const Visual = ({
           </Grid.Row>
 
           <Grid.Row columns={3}>
-            <Grid.Column>Here comes Celebrities!</Grid.Column>
+            <Grid.Column>
+              {celebrities && celebrities.length > 0 ? (
+                celebrities.map((celebrity) => {
+                  console.log("LOGGING", celebrity);
+                  <VisualHighlight {...celebrity} />;
+                })
+              ) : (
+                <i>No celebrities found!</i>
+              )}
+            </Grid.Column>
             <Grid.Column>Here comes landmarks!</Grid.Column>
             <Grid.Column>
               Action buttons to get detailed analysis (like/something opposite -
