@@ -2,16 +2,21 @@ import React from "react";
 import { Container, Divider } from "semantic-ui-react";
 
 import "./App.scss";
+
 import AppHeader from "../AppHeader";
+import AppMenu from "../appmenu";
 import Visual from "../visual";
 
 import WireframeParagraphImage from "../../assets/wireframe/paragraph.png";
 
 const App = () => {
   return (
-    <Container className="visualzer-app-container">
-      <AppHeader />
-      <Divider />
+    <Container>
+      <div>
+        <AppHeader />
+        <AppMenu />
+      </div>
+
       <Visual
         url={WireframeParagraphImage}
         description="A dummy image"
