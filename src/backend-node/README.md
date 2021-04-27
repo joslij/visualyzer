@@ -2,8 +2,6 @@
 
 - [`express`](https://www.npmjs.com/package/express) - to serve the application request and response
 - [`body-parser`](https://www.npmjs.com/package/body-parser) - to convert the request body data to JavaScript objects
-- [`cookie-parser`](https://www.npmjs.com/package/cookie-parser) - to parse the cookies in the request
-- [`helmet`](https://www.npmjs.com/package/helmet) - to secure API's by defining HTTP headers
 - [`morgan`](https://www.npmjs.com/package/morgan) - to add logging capabilities
 - [`cors`](https://www.npmjs.com/package/cors) - to allow request coming from other origins
 - [`@azure/cosmos`](https://www.npmjs.com/package/@azure/cosmos) - to work with Azure Cosmos Database

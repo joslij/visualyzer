@@ -1,8 +1,6 @@
 const express = require("express");
 const bodyparser = require("body-parser");
-const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const helmet = require("helmet");
 const morgan = require("morgan");
 const passport = require("passport");
 
@@ -14,14 +12,8 @@ const visualRoute = require("./routes/visual.route");
 const app = express();
 
 // ---- Middleware definition ----
-// :for securing api endpoints
-app.use(helmet());
-// :for parsing URL encoded data in bodies
-app.use(bodyparser.urlencoded({ extended: false }));
 // :for parsing incoming request bodies to JSON
 app.use(bodyparser.json());
-// :for parsing cookies from the HTTP request
-app.use(cookieParser());
 // :for enabling requests from other origins
 app.use(cors());
 // :for logging HTTP requests

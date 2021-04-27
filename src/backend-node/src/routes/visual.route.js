@@ -1,5 +1,6 @@
 const express = require("express");
 
+const { authorizeUser } = require("../middlewares/authz.middleware");
 const {
   getCategories,
   getAnalytics,
@@ -8,6 +9,6 @@ const {
 const visualRouter = express.Router();
 
 visualRouter.get("/visual/categories", getCategories);
-visualRouter.post("/visual/analyze", getAnalytics);
+visualRouter.post("/visual/analyze", authorizeUser, getAnalytics);
 
 module.exports = visualRouter;

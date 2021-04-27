@@ -1,9 +1,6 @@
 const express = require("express");
 
-const {
-  authorizeUser,
-  authorizeAdmin,
-} = require("../middlewares/authz.middleware");
+const { authorizeAdmin } = require("../middlewares/authz.middleware");
 const { getUserById, getAllUsers } = require("../controllers/user.controller");
 
 const userRouter = express.Router();
