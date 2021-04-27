@@ -6,7 +6,7 @@ const keyVaultUri = `https://${keyVaultName}.vault.azure.net`;
 const credential = new DefaultAzureCredential();
 const client = new SecretClient(keyVaultUri, credential);
 
-getConfigValue = async (name) => {
+const getConfigValue = async (name) => {
   const secret = await client.getSecret(name);
   if (secret) {
     return secret.value;

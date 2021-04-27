@@ -9,6 +9,10 @@ resource storageAcccount 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   }
 }
 
+resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = {
+  name: '${storageAcccount.name}/default/images'
+}
+
 output storageAccount object = {
   id: storageAcccount.id
   name: storageAcccount.name

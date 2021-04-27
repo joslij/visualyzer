@@ -2,7 +2,7 @@ const {
   ComputerVisionClient,
 } = require("@azure/cognitiveservices-computervision");
 const { ApiKeyCredentials } = require("@azure/ms-rest-js");
-const { getConfigValue } = require("../helpers/ConfigHelper");
+const { getConfigValue } = require("../helpers/config");
 const { Router } = require("express");
 
 const imageAnalysisRouter = Router();
@@ -20,7 +20,7 @@ const analyzeImage = async (computervisionSubcriptionKey) => {
   );
 
   const categoryURLImage =
-    "https://nualalobley.files.wordpress.com/2017/12/img_0186-1.jpg?w=924&h=0&crop=1";
+    "https://cdn.britannica.com/74/172774-050-8C76BD84/CMA-Entertainer-George-Strait.jpg";
 
   const imageResponse = await computerVisionClient.analyzeImage(
     categoryURLImage,
@@ -43,7 +43,6 @@ imageAnalysisRouter.get("/images", async (req, res) => {
       responseData = imageResponse;
     })
     .catch((error) => console.error(error.message));
-  console.log(process.env.NODE_ENV);
 
   res.json(responseData);
 });

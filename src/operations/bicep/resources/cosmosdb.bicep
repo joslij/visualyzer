@@ -30,26 +30,43 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-03-15' = {
       }
     }
 
-    resource cosmosSqlDbContainer 'containers' = {
-      name: 'images'
+    resource cosmosSqlDbContainer_Users 'containers' = {
+      name: 'users'
       properties: {
         options: {
           throughput: 400
         }
         resource: {
+          id: 'users'
           partitionKey: {
             paths: [
-              '/category'
+              '/role'
             ]
           }
-          id: 'images'
           uniqueKeyPolicy: {
             uniqueKeys: [
               {
                 paths: [
-                  '/uid'
+                  '/email'
                 ]
               }
+            ]
+          }
+        }
+      }
+    }
+
+    resource cosmosSqlDbContainer_Images 'containers' = {
+      name: 'visuals'
+      properties: {
+        options: {
+          throughput: 400
+        }
+        resource: {
+          id: 'visuals'
+          partitionKey: {
+            paths: [
+              '/userId'
             ]
           }
         }
@@ -60,5 +77,6 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-03-15' = {
 
 output cosmosDbAccount object = {
   id: cosmosDbAccount.id
+  name: cosmosDbAccount.name
   apiVersion: cosmosDbAccount.apiVersion
 }

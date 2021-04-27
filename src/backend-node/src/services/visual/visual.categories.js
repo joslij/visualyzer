@@ -1,4 +1,4 @@
-const imageCategories = [
+const allCategories = [
   {
     name: "emtpy",
     id: "empty_",
@@ -151,4 +151,32 @@ const imageCategories = [
   },
 ];
 
-module.exports = imageCategories;
+const excludedCategories = [
+  "emtpy",
+  "others",
+  "abstract",
+  "dark",
+  "object",
+  "text",
+  "trans",
+];
+
+const supportedCategories = [
+  "animal",
+  "building",
+  "drink",
+  "food",
+  "indoor",
+  "outdoor",
+  "people",
+  "plant",
+  "sky",
+];
+
+const getSupportedCategories = () => {
+  return supportedCategories.sort();
+};
+
+module.exports = {
+  getSupportedCategories,
+};

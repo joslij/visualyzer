@@ -1,0 +1,51 @@
+{
+  "categories": [
+    {
+      "name": "building_",
+      "score": 0.75390625,
+      "detail": {
+        "landmarks": [
+          { "name": "Eiffel Tower", "confidence": 0.9307742118835449 }
+        ]
+      }
+    }
+  ],
+  "tags": [
+    { "name": "outdoor", "confidence": 0.9999459385871887 },
+    { "name": "sky", "confidence": 0.9999347925186157 },
+    { "name": "building", "confidence": 0.9996275305747986 },
+    { "name": "tree", "confidence": 0.9983426332473755 },
+    { "name": "tower", "confidence": 0.9904496073722839 },
+    { "name": "tall", "confidence": 0.7335828542709351 },
+    { "name": "skyscraper", "confidence": 0.7322033047676086 },
+    { "name": "architecture", "confidence": 0.6039208173751831 },
+    { "name": "stone", "confidence": 0.5959417819976807 },
+    { "name": "place of worship", "confidence": 0.32563936710357666 },
+    { "name": "roof", "confidence": 0.31354624032974243 },
+    { "name": "structure", "confidence": 0.3033377230167389 },
+    { "name": "day", "confidence": 0.14471736550331116 }
+  ],
+  "description": {
+    "tags": [
+      "outdoor",
+      "sky",
+      "building",
+      "tree",
+      "tower",
+      "tall",
+      "stone",
+      "place of worship",
+      "roof",
+      "structure",
+      "day"
+    ],
+    "captions": [
+      {
+        "text": "a tall tower with trees with Eiffel Tower in the background",
+        "confidence": 0.23814421892166138
+      }
+    ]
+  },
+  "requestId": "9695b91b-fcc4-42da-bdc7-b4339021f28f",
+  "metadata": { "width": 1200, "height": 675, "format": "Jpeg" }
+}

@@ -36,7 +36,6 @@ const Visual = ({
             <Grid.Column>
               {celebrities && celebrities.length > 0 ? (
                 celebrities.map((celebrity) => {
-                  console.log("LOGGING", celebrity);
                   <VisualHighlight {...celebrity} />;
                 })
               ) : (

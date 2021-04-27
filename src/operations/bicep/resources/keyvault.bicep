@@ -31,10 +31,10 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-04-01-preview' = {
     ]
   }
 
-  resource cosmosKeySecret 'secrets' = {
-    name: 'CosmosKey'
+  resource cosmosConnectionString 'secrets' = {
+    name: 'CosmosConnectionString'
     properties: {
-      value: listKeys(cosmosDbAccount.id, cosmosDbAccount.apiVersion).primaryMasterKey
+      value: 'AccountEndpoint=${reference(cosmosDbAccount.id, cosmosDbAccount.apiVersion).documentEndpoint};AccountKey=${listKeys(cosmosDbAccount.id, cosmosDbAccount.apiVersion).primaryMasterKey};'
     }
   }
 
