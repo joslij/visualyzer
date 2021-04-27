@@ -9,9 +9,6 @@ const passport = require("passport");
 const authRoute = require("./routes/auth.route");
 const userRoute = require("./routes/user.route");
 const visualRoute = require("./routes/visual.route");
-// const imageAnalysisApi = require("./analysis/imageAnalysis");
-
-// ---- Configurations ----
 
 // ---- Application definition ----
 const app = express();

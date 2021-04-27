@@ -37,17 +37,10 @@ It is recommended that you read their [privacy policy](https://azure.microsoft.c
 
 ## Authentication
 
-- The application has three types of users
-  - Admins users (user's configured in Azure AD group). They can upload photos for analysis and make it public to view, delete photos, etc.
-  - Public users - Users can view all images that are made public by the admin users
-  - Users - Users that are logged in using supported social identity providers (Facebook, Google, Microsoft) and has created a profile. They can upload their own photos and get insights on them.
-- Authentication library
-  - [msal-node](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-node), the Microsoft Authentication Library for Node will be used to authentication users using Azure AD (admin users), and social identity
-- Register the `visualyzer` application in Azure AD. See [documentation](https://docs.microsoft.com/en-gb/azure/active-directory/develop/quickstart-register-app) for registering application.
-  Reference for this specific applicaiton can be found here [here](https://github.com/Azure-Samples/ms-identity-node#register-the-application)
-
-- Run bicep
-- Setup app - https://github.com/Azure-Samples/ms-identity-node#register-the-application
+- The application has two types of users
+  - **`public`** users are those who can access all public aspects of the website. They do not need to registered and can view public aspects like shared images, reactions and comments on them. They do not have permissions to upload visuals, react or comment on visuals unless they are registered.
+  - **`user`** role users are those who have registered. They can upload own images to get insights on it and share them with the `public` users.
+  - **`admin`** role users are configured in database directly. In addition to `user` role users, they have permission to manage all users and their images.
 
 ## Testing
 

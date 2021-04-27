@@ -1,5 +1,5 @@
 const passport = require("passport");
-require("../services/auth/passport.strategy.authnjs");
+require("../services/auth/passport.strategy.authn.js");
 
 const { generateToken } = require("../helpers/jwt.helper");
 
@@ -8,10 +8,10 @@ const login = async (req, res, next) => {
     const authenticate = passport.authenticate(
       "login",
       { session: false },
-      async (error, user, responseObect) => {
-        let response = responseObect;
+      async (error, user, responseObject) => {
+        let response = responseObject;
         if (!error && user) {
-          response.token = generateToken(responseObect.data);
+          response.token = generateToken(responseObject.data);
         }
         res.status(response.statusCode).json(response);
       }
