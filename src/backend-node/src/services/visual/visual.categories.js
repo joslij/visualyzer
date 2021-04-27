@@ -1,3 +1,7 @@
+const { StatusCodes } = require("http-status-codes");
+
+const { response: responseModel } = require("../../models/response.model");
+
 const allCategories = [
   {
     name: "emtpy",
@@ -174,7 +178,11 @@ const supportedCategories = [
 ];
 
 const getSupportedCategories = () => {
-  return supportedCategories.sort();
+  const categories = supportedCategories.sort();
+  return responseModel({
+    data: categories,
+    statusCode: StatusCodes.OK,
+  });
 };
 
 module.exports = {
