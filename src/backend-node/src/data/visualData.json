@@ -2,6 +2,18 @@
   "id": "e8df31a5-33d9-477b-a4d6-f720c99fb276",
   "userId": "userId",
   "isPublic": true,
+  "description": {
+    "tags": ["outdoor", "ground", "sidewalk"],
+    "captions": [
+      {
+        "text": "a man standing in front of a large building with a gold dome",
+        "confidence": 0.39802947640419006
+      }
+    ]
+  },
+  "people": [],
+  "landmarks": [],
+  "metadata": { "width": 924, "height": 1232, "format": "Jpeg" },
   "reactions": {
     "likes": [122, 110, 2032],
     "disLikes": [3, 333, 498, 553],
@@ -17,33 +29,5 @@
         "comment": "good blah"
       }
     ]
-  },
-  "categories": [
-    { "name": "building_", "score": 0.19140625, "detail": { "landmarks": [] } },
-    { "name": "outdoor_", "score": 0.01171875, "detail": { "landmarks": [] } }
-  ],
-  "tags": [
-    { "name": "outdoor", "confidence": 0.9970201253890991 },
-    { "name": "ground", "confidence": 0.9825328588485718 },
-    { "name": "sky", "confidence": 0.9588236212730408 },
-    { "name": "clothing", "confidence": 0.8846505880355835 },
-    { "name": "footwear", "confidence": 0.8075231909751892 },
-    { "name": "person", "confidence": 0.8049339056015015 },
-    { "name": "sidewalk", "confidence": 0.7914772033691406 },
-    { "name": "man", "confidence": 0.7338970899581909 },
-    { "name": "city", "confidence": 0.6078606843948364 },
-    { "name": "jeans", "confidence": 0.5626429915428162 },
-    { "name": "statue", "confidence": 0.5241145491600037 }
-  ],
-  "description": {
-    "tags": ["outdoor", "ground", "sidewalk"],
-    "captions": [
-      {
-        "text": "a man standing in front of a large building with a gold dome",
-        "confidence": 0.39802947640419006
-      }
-    ]
-  },
-  "requestId": "e8df31a5-33d9-477b-a4d6-f720c99fb276",
-  "metadata": { "width": 924, "height": 1232, "format": "Jpeg" }
+  }
 }

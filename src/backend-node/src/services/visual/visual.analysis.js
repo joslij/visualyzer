@@ -4,6 +4,7 @@ const {
 } = require("@azure/cognitiveservices-computervision");
 const { ApiKeyCredentials } = require("@azure/ms-rest-js");
 
+const { getModelFromAnalysisData } = require("../../models/visual.model");
 const { response: responseModel } = require("../../models/response.model");
 const { getConfigValue } = require("../../helpers/config.helper");
 
@@ -36,8 +37,10 @@ const getAnalyticsFromURL = async ({ url }) => {
       language: "en",
     });
 
+    const visualModel = getModelFromAnalysisData(false, analysisData);
+
     response = responseModel({
-      data: analysisData,
+      data: visualModel,
       statusCode: StatusCodes.OK,
     });
   } catch (error) {
