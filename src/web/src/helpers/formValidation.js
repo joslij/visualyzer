@@ -13,7 +13,7 @@ export const validateEmail = (email) => {
   const errors = [];
 
   if (!email) {
-    errors.push(`email: value is required`);
+    errors.push("email: value is required");
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
     errors.push("email: value is not valid");
   }

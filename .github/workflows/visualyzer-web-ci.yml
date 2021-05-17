@@ -1,4 +1,4 @@
-name: [CI] Visualyzer API 
+name: [CI] Visualyzer Web 
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-    working-directory: ./src/api
+    working-directory: ./src/web
 
 jobs:
   build:

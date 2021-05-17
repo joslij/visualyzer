@@ -11,7 +11,7 @@
   - [Prerequisites](#prerequisites)
   - [Azure resources](#azure-resources)
   - [API (Node.js) project](#api-nodejs-project)
-  - [SPA (React) project](#spa-react-project)
+  - [Web (React) project](#web-react-project)
 - [Disclaimer](#disclaimer)
 - [References and KB](#references-and-kb)
 
@@ -71,7 +71,7 @@ export PRINCIPAL_ID=<PASTE_PRINCIPAL_ID_HERE>
 
 ### API (Node.js) project
 
-1. :open_file_folder: Navigate to `src/visualyzer-api` directory.
+1. :open_file_folder: Navigate to `src/api` directory.
 1. Create a RSA256 (Private and Public RSA Key pair) for JWT tokens using the following commands.
 
    ```bash
@@ -102,9 +102,9 @@ export PRINCIPAL_ID=<PASTE_PRINCIPAL_ID_HERE>
 1. Run the API using `curl` or `postman`. For example, use `curl -v http://localhost:3000/api/visuals ` to get all public visuals.
 1. :bell: Remove the `jwtRS256.key` and `jwtRS256.key.pub` files that were created as part of the JWT key generation step.
 
-### SPA (React) project
+### Web (React) project
 
-1. :open_file_folder: Navigate to `src/visualyzer-spa` directory.
+1. :open_file_folder: Navigate to `src/web` directory.
 1. Create `.env` file with following variables.
 
    ```
