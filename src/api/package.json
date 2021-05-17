@@ -7,8 +7,8 @@
   "scripts": {
     "start": "set NODE_ENV=production && node src/index.js",
     "start:dev": "nodemon src/index.js",
-    "test": "jest --no-cache",
-    "test:dev": "jest --watchAll --no-cache"
+    "test": "jest --no-cache --passWithNoTests",
+    "test:dev": "jest --watchAll --no-cache --passWithNoTests"
   },
   "repository": {
     "type": "git",

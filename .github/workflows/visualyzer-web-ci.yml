@@ -19,7 +19,7 @@ jobs:
         node-version: [15.x]
 
     steps:
-      - name: Checkout code from ${{ matrix.node-version }}
+      - name: Checkout code to run against Node.js version ${{ matrix.node-version }}
         uses: actions/checkout@v2
       - name: Setup Node.js version ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -29,5 +29,5 @@ jobs:
         run: npm ci
       - name: Run npm build if present
         run: npm run build --if-present
-      - name: Run the tests (Pass if not tests are found)
-        run: npm test --passWithNoTests
+      - name: Run the tests
+        run: npm test

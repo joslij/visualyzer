@@ -8,8 +8,8 @@
     "build:dev": "webpack --config webpack.dev.js",
     "start": "webpack serve --config webpack.prod.js",
     "start:dev": "webpack serve --config webpack.dev.js --open chrome",
-    "test": "prettier --check . && eslint . && jest --no-cache",
-    "test:dev": "prettier --write . && eslint . && jest --watchAll --no-cache"
+    "test": "prettier --check . && eslint . && jest --no-cache --passWithNoTests",
+    "test:dev": "prettier --write . && eslint . && jest --watchAll --no-cache --passWithNoTests"
   },
   "repository": {
     "type": "git",
