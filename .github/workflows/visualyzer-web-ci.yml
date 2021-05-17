@@ -1,4 +1,4 @@
-name: [CI] Visualyzer Web 
+name: CI -Visualyzer Web
 
 on:
   push:

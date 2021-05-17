@@ -1,4 +1,4 @@
-name: [CI] Visualyzer API 
+name: CI - Visualyzer API
 
 on:
   push:
