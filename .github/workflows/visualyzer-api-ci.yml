@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-    working-directory: ./visualyzer-api
+    working-directory: ./src/visualyzer-api
 
 jobs:
   build:
