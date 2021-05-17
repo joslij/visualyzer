@@ -3,12 +3,13 @@ targetScope = 'subscription'
 @minLength(1)
 @maxLength(10)
 @description('The name of the application which will be used as prefix for resource names')
-param appname string
+param appname string = 'visualyzer'
 
 @description('The primary location for all the resources')
-param location string = 'uksouth'
+param location string
 
 @minLength(1)
+@description('The object ID of the Azure AD user or group who is provisioning the resources')
 param principalId string
 
 // Resource Group

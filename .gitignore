@@ -157,3 +157,6 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+
+# Application specific files
+uploads

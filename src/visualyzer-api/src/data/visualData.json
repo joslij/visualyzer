@@ -1,0 +1,30 @@
+{
+  "id": "<UUID OF VISUAL>",
+  "userId": "<UUID OF USER>",
+  "url": "<URL OF VISUAL>",
+  "isPublic": "true|false",
+  "description": {
+    "text": "<Description of the visual>",
+    "tags": ["<tag1 - man>", "<tag2 - wearing>", "<tag3 - suit>", "etc..."]
+  },
+  "categories": ["<category1 - people>", "<category2 - outdoor>", "etc..."],
+  "people": ["<person1 - if found>", "etc..."],
+  "landmarks": ["<landmark1 - if found>", "etc..."],
+  "reactions": {
+    "likes": ["<UUID of user who has liked>", "etc."],
+    "dislikes": ["<UUID of user who has disliked>", "etc."],
+    "comments": [
+      {
+        "id": "<UUID of the comment>",
+        "author": "<User's display name>",
+        "text": "<Comment>",
+        "ts": "<Timestamp>"
+      }
+    ]
+  },
+  "metadata": {
+    "width": 1620,
+    "height": 1080,
+    "format": "Jpeg"
+  }
+}

@@ -1,0 +1,17 @@
+$app-color: #5829bb;
+
+.vis-app-logo-text {
+  color: $app-color;
+  font-size: 1em;
+}
+
+.vis-app-menu-regular,
+.vis-app-menu-fixed {
+  border: none !important;
+  border-radius: 0 !important;
+  transition: box-shadow 0.5s ease, padding 0.5s ease;
+}
+
+.vis-app-button-auth:last-child {
+  margin-left: 0.5em !important;
+}

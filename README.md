@@ -1,90 +1,145 @@
-# Visualyzer
+![logo](./docs/images/visualyzer-image.png "Visualyzer")
 
-The application will give visual insights of popular places, animals, emotions, _and more_.
+**Visual<sub>yzer</sub>** is an application that will give analyze your visuals and give insights by identifying famous landmarks and people. It will also try to identify visual features involved in the image such as animals, buildings, drinks, food, indoor, outdoor, people, plants, sky, etc.
 
-# **Disclaimer**
+# Contents
 
-The application uses [Microsoft Azure Cognitive Services - Computer Vision](https://docs.microsoft.com/en-gb/azure/cognitive-services/computer-vision/) to analyze the images. According to Microsoft, they do not store your uploaded images or videos after they are analyzed:
+- [How it works](#how-it-works)
+  - [Technologies](#technologies)
+  - [Image requirements](#image-requirements)
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [Azure resources](#azure-resources)
+  - [API (Node.js) project](#api-nodejs-project)
+  - [SPA (React) project](#spa-react-project)
+- [Disclaimer](#disclaimer)
+- [References and KB](#references-and-kb)
 
-```
-Microsoft automatically deletes your images and videos after processing and doesn’t train on your data to enhance the underlying models. Video data doesn’t leave your premises, and video data isn’t stored on the edge where the container runs.
-```
+## How it works
 
-It is recommended that you read their [privacy policy](https://azure.microsoft.com/en-gb/support/legal/cognitive-services-compliance-and-privacy/).
+Visualyzer allows registered users to upload their visuals for analysis. It uses [Microsoft Azure Cognitive Services - Computer Vision](https://docs.microsoft.com/en-gb/azure/cognitive-services/computer-vision/) to analyze these visuals. Key features:
 
-# Image requirements
+- No need to register to view visuals that are made public by registered users.
+- Option to register and store your visuals indefinitely or delete them when not required.
+- Ability to agree / disagree on the anlaysis results.
+- Interact with other users using the comment section under the visual.
+
+### Technologies
+
+The application uses three main technologies:
+
+- **React**: the internet facing SPA.
+- **Node.js**: the API application that serves the SPA. It consists of two resources - users and visuals.
+- **Azure**: hosts the application, database, files, and analyze the images.
+
+### Image requirements
 
 - The image must be presented in JPEG, PNG, GIF, or BMP format
 - The file size of the image must be less than 4 megabytes (MB)
 - The dimensions of the image must be greater than 50 x 50 pixels
 
-# References and issues with bicep
+## Installation
 
-1. ["type object 'datetime.datetime' has no attribute 'fromisoformat'"](https://github.com/Azure/bicep/issues/2243#issuecomment-818914668)
+Please follow the step-by-step instructions below to setup your development environment.
 
-   [**Issue details in GitHub of Bicep**](https://github.com/Azure/bicep/issues/2243)
+### Prerequisites
 
-   **Temporaray Solution**: Azure CLI nowadays ships with a standalone Python executable, so you may need to use the virtual environment
+1. Azure subscription
+1. [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+1. Node.js
+1. VS Code or any other IDE
 
-   ```
-   <path_to_python_38/Python> -m pip install --upgrade pip
-    pip install azure-cli
-    az --version
-    env\Scripts\activate.bat
-   ```
+### Azure resources
 
-# Developer notes
+1. :open_file_folder: Navigate to `src/operations/bicep` directory.
+1. Run `az login` in a shell (PowerShell/Bash) to login to your Azure subscription.
+1. Run `./provision.ch` by supplying values to the following three variables in order to create the resources.
 
-## Authentication
+- `APP_NAME` - The name of the application. It will be used as prefix for resource names. For example, `visualyzer`.
+- `LOCATION_NAME` - The name of the Azure location where you would like to have your resoures provisioned. For example, `westus2`.  
+  :pushpin: Use the command `az account list-locations -o table` to find all the locations that are supported.
+- `PRINCIPAL_ID` - The object ID of the Azure AD user or (ideally) group who will be assigned permissions to read, write, delete secrets in Azure Key Vault (which are essentially Get, List, Set, Delete secret management operations).
 
-- The application has two types of users
-  - **`public`** users are those who can access all public aspects of the website. They do not need to registered and can view public aspects like shared images, reactions and comments on them. They do not have permissions to upload visuals, react or comment on visuals unless they are registered.
-  - **`user`** role users are those who have registered. They can upload own images to get insights on it and share them with the `public` users.
-  - **`admin`** role users are configured in database directly. In addition to `user` role users, they have permission to manage all users and their images.
+Example script to use in Bash shell:
 
-## Testing
-
-The front-end application covers the following test types:
-
-![4 types of JavaScript Tests](/docs/images/FourTypesOfTests.png){ width=5px; height: 5px }
-
-**Credits**: [Testing JavaScript](https://testingjavascript.com/)
-
-## Static Testing
-
-### Linting
-
-```
-Linting is the process of running a program that will analyse code for potential errors.
+```bash
+export APP_NAME=visualyzer
+export LOCATION_NAME=westus2
+export PRINCIPAL_ID=<PASTE_PRINCIPAL_ID_HERE>
+./provision.sh
 ```
 
-Tools that are used and their purposes are described below.
+### API (Node.js) project
 
-1. [ESLint](https://eslint.org/docs/user-guide/getting-started)
+1. :open_file_folder: Navigate to `src/visualyzer-api` directory.
+1. Create a RSA256 (Private and Public RSA Key pair) for JWT tokens using the following commands.
 
-   - **Setup**: `npm install eslint --save-dev`
-   - **Configure**: `npx eslint --init` - it will create a `.eslintrc.js` file if you prefer to save it as `js` file.
-   - **Configure** - add `.eslintignore` to avoid _paths_ to be ignored from _linting_. This normally includes **node_modules**
-   - **Analyze** -
+   ```bash
+   ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
+   # Don't add passphrase
+   openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub
+   ```
 
-     - **Advantages**: fsdfsdfs
-     - **Disadvantages**: dfsdfsdfs
+1. Create an `.env` file in the folder by suppling values to the following variables. Replace `<...>` with appropriate values.
 
-   - Can identify "non-standard" patterns used in JavaScript
-   - Can be used with CI pipelines (TODO:// CLARIFY PLEASE)
+   ```env
+   NODE_ENV=development
+   PORT=3000
+   KEY_VAULT_NAME=<APP_NAME>-kv
+   COMPUTER_VISION_SUBSCRIPTION_KEY=ComputerVisionSubscriptionKey
+   COMPUTER_VISION_API_ANALYZE_ENDPOINT=<PASTE_THE_COMPUTER_VISION_API_BASEURL>/vision/v3.2/analyze
+   COSMOSDB_CONNECTIONSTRING_KEY=CosmosConnectionString
+   AZURE_STORAGE_CONNECTIONSTRING_KEY=StorageConnectionString
+   JWT_PRIVATE_KEY_VALUE=<PASTE_THE_JWT_PRIVATE_KEY_VALUE_AFTER_REPLACING_NEWLINES_WITH_\n>
+   JWT_PUBLIC_KEY_VALUE=<PASTE_THE_JWT_PUBLIC_KEY_VALUE_AFTER_REPLACING_NEWLINES_WITH_\n>
+   JWT_VALIDITY_IN_SECONDS=3600
+   ```
 
-## Unit Testing
+   You can also find the Computer Vision API endpoint to be provided to `COMPUTER_VISION_API_ANALYZE_ENDPOINT` from the API documentation [here](https://westus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-2/) by selecting the region you supplied while creating the Azure resources.
 
-TODO://
+1. Run `npm i` to install the dependencies.
+1. Run `npm run start:dev` to start the express.js server listening at port `3000`.
+1. Run the API using `curl` or `postman`. For example, use `curl -v http://localhost:3000/api/visuals ` to get all public visuals.
+1. :bell: Remove the `jwtRS256.key` and `jwtRS256.key.pub` files that were created as part of the JWT key generation step.
 
-## Integration Testing
+### SPA (React) project
 
-TODO://
+1. :open_file_folder: Navigate to `src/visualyzer-spa` directory.
+1. Create `.env` file with following variables.
 
-## End to End Testing
+   ```
+   API_BASE_URL=http://localhost:3000/api
+   ```
 
-TODO://
+   Change the port of the API application if you have changed the default from 3000.
 
-# References
+1. Run `npm i` to install the dependencies.
+1. Run `npm run start:dev` to start the webpack development server listening at port `8080`. Browser will be opened by default and it will reload on changes.
+1. Create a user by navigating to `http://localhost:8080/register`.
+1. After registration is successful, upload images either by using public URL or from your local machine to analyze them.
 
-1. [State of JavaScript Testing](https://2020.stateofjs.com/en-US/technologies/testing/)
+## Disclaimer
+
+According to Microsoft, they do not store your uploaded images or videos after they are analyzed:
+
+> Microsoft automatically deletes your images and videos after processing and doesn’t train on your data to enhance the underlying models. Video data doesn’t leave your premises, and video data isn’t stored on the edge where the container runs.
+
+Please read their privacy policy [here](https://azure.microsoft.com/en-gb/support/legal/cognitive-services-compliance-and-privacy/).
+
+## References and KB
+
+### Node.js
+
+- [Express and Node.js app deployment](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment)
+
+### Azure with Node.js
+
+- [Azure Cosmos with Nodejs](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-nodejs-application)
+- [Handling Authentication in NodeJS](https://codeburst.io/handling-authentication-in-nodejs-express-with-passport-part-3-authentication-and-authorization-8e07d819a113)
+- [Upload images to container](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-nodejs#upload-blobs-to-a-container)
+- [Upload images to Azure blob storage](https://arjunphp.com/express-js-upload-images-to-azure-blob-storage/)
+
+### Source Control
+
+- [GitHub emojis](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+- [Awesome README's](https://github.com/matiassingers/awesome-readme)

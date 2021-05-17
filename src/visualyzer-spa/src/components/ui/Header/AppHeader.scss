@@ -1,0 +1,14 @@
+.vis-app-header {
+  background: url("../../../assets/visualyzer-main-background.png");
+  box-shadow: none;
+
+  * {
+    color: #fff !important;
+  }
+
+  h1 {
+    background-color: rgba(44, 62, 80, 0.6);
+    padding: 30px 20px !important;
+    transition: box-shadow 0.9s ease, padding 0.5s ease;
+  }
+}
