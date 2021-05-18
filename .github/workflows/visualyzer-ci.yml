@@ -22,7 +22,7 @@ jobs:
         working-directory: ${{ env.AZURE_APP_PACKAGE_PATH_API }}
 
     steps:
-      - name: Checkout code ${{ env.GITHUB_WORKSPACE }}
+      - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup Node.js version ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
