@@ -5,7 +5,7 @@ const generateToken = ({ id }) => {
     /\\n/gm,
     "\n"
   );
-  const jwtValidityInSeconds = process.env.JWT_VALIDITY_IN_SECONDS;
+  const jwtValidityInSeconds = process.env.JWT_VALIDITY_IN_SECONDS ?? 3600;
   const token = jwt.sign({ id }, jwtPrivateKey, {
     expiresIn: `${jwtValidityInSeconds}s`,
     algorithm: "RS256",

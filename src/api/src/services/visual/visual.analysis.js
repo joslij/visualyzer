@@ -15,14 +15,14 @@ let computerVisionClient = null;
 const initialize = async () => {
   if (!computervisionSubcriptionKey) {
     computervisionSubcriptionKey = await getConfigValue(
-      process.env.COMPUTER_VISION_SUBSCRIPTION_KEY
+      "ComputerVisionSubscriptionKey"
     );
   }
   computerVisionClient = new ComputerVisionClient(
     new ApiKeyCredentials({
       inHeader: { "Ocp-Apim-Subscription-Key": computervisionSubcriptionKey },
     }),
-    process.env.COMPUTER_VISION_API_ANALYZE_ENDPOINT
+    process.env.AZURE_COMPUTER_VISION_API_ANALYZE_ENDPOINT
   );
 };
 

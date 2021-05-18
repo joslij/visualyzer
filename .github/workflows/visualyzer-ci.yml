@@ -6,9 +6,10 @@ on:
   pull_request:
     branches: [main]
 
-defaults:
-  run:
-    working-directory: ./src/api
+env:
+  AZURE_APP_PACKAGE_PATH_API: "./src/api"
+  AZURE_APP_PACKAGE_PATH_WEB: "./src/web"
+  NODE_VERSION: "14.x"
 
 jobs:
   ci-api:
@@ -20,18 +21,14 @@ jobs:
       run:
         working-directory: ./src/api
 
-    strategy:
-      matrix:
-        node-version: [15.x]
-
     steps:
-      - name: Checkout code to run against Node.js version ${{ matrix.node-version }}
+      - name: Checkout code from ${{ run.working-directory }}
         uses: actions/checkout@v2
-      - name: Setup Node.js version ${{ matrix.node-version }}
+      - name: Setup Node.js version ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install the project with a clean slate
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install the project with a clean slate (npm ci)
         run: npm ci
       - name: Run npm build if present
         run: npm run build --if-present
@@ -47,18 +44,14 @@ jobs:
       run:
         working-directory: ./src/web
 
-    strategy:
-      matrix:
-        node-version: [15.x]
-
     steps:
-      - name: Checkout code to run against Node.js version ${{ matrix.node-version }}
+      - name: Checkout code from ${{ run.working-directory }}
         uses: actions/checkout@v2
-      - name: Setup Node.js version ${{ matrix.node-version }}
+      - name: Setup Node.js version ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install the project with a clean slate
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Install the project with a clean slate (npm ci)
         run: npm ci
       - name: Run npm build if present
         run: npm run build --if-present

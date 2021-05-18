@@ -12,7 +12,7 @@ const cosmosdbConfig = {
 const get = async () => {
   if (!cosmosdbConfig.connectionString) {
     const connectionStringValue = await getConfigValue(
-      process.env.COSMOSDB_CONNECTIONSTRING_KEY
+      "CosmosConnectionString"
     );
     cosmosdbConfig.connectionString = connectionStringValue;
   }

@@ -64,5 +64,6 @@ module appService 'resources/appservice.bicep' = {
   scope: rg
   params: {
     appname: appname
+    keyVault: keyVault.outputs.keyVault
   }
 }

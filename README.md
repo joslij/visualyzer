@@ -88,16 +88,15 @@ export PRINCIPAL_ID=<PASTE_PRINCIPAL_ID_HERE>
    NODE_ENV=development
    PORT=3000
    KEY_VAULT_NAME=<APP_NAME>-kv
-   COMPUTER_VISION_SUBSCRIPTION_KEY=ComputerVisionSubscriptionKey
-   COMPUTER_VISION_API_ANALYZE_ENDPOINT=<PASTE_THE_COMPUTER_VISION_API_BASEURL>/vision/v3.2/analyze
-   COSMOSDB_CONNECTIONSTRING_KEY=CosmosConnectionString
-   AZURE_STORAGE_CONNECTIONSTRING_KEY=StorageConnectionString
+   AZURE_COMPUTER_VISION_API_ANALYZE_ENDPOINT=<PASTE_THE_COMPUTER_VISION_API_BASEURL>/vision/v3.2/analyze
    JWT_PRIVATE_KEY_VALUE=<PASTE_THE_JWT_PRIVATE_KEY_VALUE_AFTER_REPLACING_NEWLINES_WITH_\n>
    JWT_PUBLIC_KEY_VALUE=<PASTE_THE_JWT_PUBLIC_KEY_VALUE_AFTER_REPLACING_NEWLINES_WITH_\n>
    JWT_VALIDITY_IN_SECONDS=3600
    ```
 
    You can also find the Computer Vision API endpoint to be provided to `COMPUTER_VISION_API_ANALYZE_ENDPOINT` from the API documentation [here](https://westus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-2/) by selecting the region you supplied while creating the Azure resources.
+
+   `JWT_VALIDITY_IN_SECONDS` variable is not mandatory, it defaults to 3600 seconds if not provided.
 
    Use the `.env.example` file as the template.
 

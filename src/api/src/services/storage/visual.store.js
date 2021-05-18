@@ -13,9 +13,7 @@ const containerName = "images";
 
 const initialize = async () => {
   if (!connectionString) {
-    connectionString = await getConfigValue(
-      process.env.AZURE_STORAGE_CONNECTIONSTRING_KEY
-    );
+    connectionString = await getConfigValue("StorageConnectionString");
     blobServiceClient =
       BlobServiceClient.fromConnectionString(connectionString);
     containerClient = blobServiceClient.getContainerClient(containerName);

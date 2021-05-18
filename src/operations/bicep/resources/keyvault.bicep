@@ -59,3 +59,9 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-04-01-preview' = {
     }
   }
 }
+
+output keyVault object = {
+  id: keyVault.id
+  name: keyVault.name
+  apiVersion: keyVault.apiVersion
+}
