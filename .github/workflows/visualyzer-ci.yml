@@ -19,7 +19,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./src/api
+        working-directory: ${{ env.AZURE_APP_PACKAGE_PATH_WEB }}
 
     steps:
       - name: Checkout code
@@ -42,7 +42,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./src/web
+        working-directory: ${{ env.AZURE_APP_PACKAGE_PATH_API }}
 
     steps:
       - name: Checkout code
