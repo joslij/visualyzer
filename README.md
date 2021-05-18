@@ -1,6 +1,8 @@
 ![logo](./docs/images/visualyzer-image.png "Visualyzer")
 
-**Visual<sub>yzer</sub>** is an application that will give analyze your visuals and give insights by identifying famous landmarks and people. It will also try to identify visual features involved in the image such as animals, buildings, drinks, food, indoor, outdoor, people, plants, sky, etc.
+![CI workflow](https://github.com/joslij/visualyzer/actions/workflows/visualyzer-ci.yml/badge.svg)
+
+**Visual<sub>yzer</sub>** is an application that will analyze your visuals and give insights by identifying famous landmarks and people. It will also try to identify visual features involved in the image such as animals, buildings, drinks, food, indoor, outdoor, people, plants, sky, etc.
 
 # Contents
 
