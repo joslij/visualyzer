@@ -35,8 +35,8 @@ jobs:
         run: npm ci
       - name: Run npm build if present
         run: npm run build --if-present
-      - name: Run the tests
-        run: npm test
+      - name: Run the tests if present
+        run: npm test --if-present
 
   ci-web:
     name: CI - Visualyzer Web
@@ -62,5 +62,5 @@ jobs:
         run: npm ci
       - name: Run npm build if present
         run: npm run build --if-present
-      - name: Run the tests
-        run: npm test
+      - name: Run the tests if present
+        run: npm test --if-present

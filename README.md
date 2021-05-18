@@ -97,6 +97,8 @@ export PRINCIPAL_ID=<PASTE_PRINCIPAL_ID_HERE>
 
    You can also find the Computer Vision API endpoint to be provided to `COMPUTER_VISION_API_ANALYZE_ENDPOINT` from the API documentation [here](https://westus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-2/) by selecting the region you supplied while creating the Azure resources.
 
+   Use the `.env.example` file as the template.
+
 1. Run `npm i` to install the dependencies.
 1. Run `npm run start:dev` to start the express.js server listening at port `3000`.
 1. Run the API using `curl` or `postman`. For example, use `curl -v http://localhost:3000/api/visuals ` to get all public visuals.
@@ -112,6 +114,8 @@ export PRINCIPAL_ID=<PASTE_PRINCIPAL_ID_HERE>
    ```
 
    Change the port of the API application if you have changed the default from 3000.
+
+   Use the `.env.example` file as the template.
 
 1. Run `npm i` to install the dependencies.
 1. Run `npm run start:dev` to start the webpack development server listening at port `8080`. Browser will be opened by default and it will reload on changes.
