@@ -13,9 +13,13 @@ env:
 
 jobs:
   cd-api:
-    name: CD - Visualyzer API
+    name: Deploy - Visualyzer API
     
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ${{ env.AZURE_APP_PACKAGE_PATH_API }}
     
     environment: production
     
