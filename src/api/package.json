@@ -5,9 +5,10 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "npm i",
-    "start": "set NODE_ENV=production && node src/index.js",
-    "start:dev": "nodemon src/index.js",
+    "prebuild": "rm -rf node_modules && rm -rf ../../wwwroot/* && cp -r . ../../wwwroot",
+    "build": "cd ../../wwwroot",
+    "start": "set NODE_ENV=production&& node index.js",
+    "start:dev": "set NODE_ENV=development&& nodemon index.js",
     "test": "jest --no-cache --passWithNoTests",
     "test:dev": "jest --watchAll --no-cache --passWithNoTests"
   },

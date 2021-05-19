@@ -114,16 +114,6 @@ export JWT_PUBLIC_KEY_VALUE='<PASTE_THE_PUBLIC_KEY_VALUE>'
 ### Web (React) project
 
 1. :open_file_folder: Navigate to `src/web` directory.
-1. Create `.env` file with following variables.
-
-   ```
-   API_BASE_URL=http://localhost:3000/api
-   ```
-
-   Change the port of the API application if you have changed the default from 3000.
-
-   Use the `.env.example` file as the template.
-
 1. Run `npm i` to install the dependencies.
 1. Run `npm run start:dev` to start the webpack development server listening at port `8080`. Browser will be opened by default and it will reload on changes.
 1. Create a user by navigating to `http://localhost:8080/register`.

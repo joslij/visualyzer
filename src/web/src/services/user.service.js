@@ -1,9 +1,9 @@
-const apiBaseUrl = process.env.API_BASE_URL;
+const apiUrl = VISAPPCONFIG.apiUrl;
 
 export const getUserProfile = async (userId, token) => {
   let response = null;
   try {
-    const apiResponse = await fetch(`${apiBaseUrl}/user/${userId}/me`, {
+    const apiResponse = await fetch(`${apiUrl}/user/${userId}/me`, {
       method: "GET",
       cache: "no-cache",
       headers: {

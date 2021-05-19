@@ -2,16 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const dotenv = require("dotenv").config({
-  path: path.join(__dirname, ".env"),
-});
-const env = dotenv.parsed;
-const envKeys = env
-  ? Object.keys(env).reduce((prev, next) => {
-      prev[`process.env.${next}`] = JSON.stringify(env[next]);
-      return prev;
-    }, {})
-  : {};
 
 module.exports = {
   entry: "./src/index.js",
@@ -27,11 +17,9 @@ module.exports = {
     extensions: ["*", ".js", ".jsx"],
   },
   plugins: [
-    new webpack.DefinePlugin(envKeys),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
       favicon: "./public/favicon.ico",
-      buildTime: new Date().toString(),
     }),
     new MiniCssExtractPlugin({
       filename: "[name]-[contenthash:8].css",

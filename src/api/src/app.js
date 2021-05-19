@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const bodyparser = require("body-parser");
 const cors = require("cors");
@@ -11,6 +12,7 @@ const visualRoute = require("./routes/visual.route");
 
 // ---- Application definition ----
 const app = express();
+const ENV = process.env.NODE_ENV;
 
 // ---- Middleware definition ----
 // :for parsing incoming request bodies to JSON
@@ -23,14 +25,17 @@ app.use(morgan("combined"));
 app.use(compression());
 // :for protection against well-know web vulnerabilities
 app.use(helmet());
+// :for serving static assets
+app.use(express.static(path.resolve(__dirname, "web")));
 
 // ---- Endpoints definition ----
-// :for base url request
-app.get("/", (req, res) => {
-  res.json({
-    message: "Welcome to Visualyzer!",
+// :for all non-api requests, serve static files from web folder
+if (ENV === "production") {
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "web", "index.html"));
   });
-});
+}
+
 // :for api/auth requests (i.e. register and login)
 app.use("/api", authRoute);
 // :for api/user requests

@@ -1,9 +1,9 @@
-const apiBaseUrl = process.env.API_BASE_URL;
+const apiUrl = VISAPPCONFIG.apiUrl;
 
 export const login = async (email, password) => {
   let response = null;
   try {
-    const apiResponse = await fetch(`${apiBaseUrl}/auth/login`, {
+    const apiResponse = await fetch(`${apiUrl}/auth/login`, {
       method: "POST",
       cache: "no-cache",
       headers: {
@@ -34,7 +34,7 @@ export const register = async ({
 }) => {
   let response = null;
   try {
-    const apiResponse = await fetch(`${apiBaseUrl}/auth/register`, {
+    const apiResponse = await fetch(`${apiUrl}/auth/register`, {
       method: "POST",
       cache: "no-cache",
       headers: {

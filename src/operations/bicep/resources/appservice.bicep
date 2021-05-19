@@ -38,7 +38,6 @@ resource webApp 'Microsoft.Web/sites@2018-11-01' = {
   resource webApp_Settings 'config@2020-12-01' = {
     name: 'appsettings'
     properties: {
-      'API_BASE_URL': '/api'
       'AZURE_COMPUTER_VISION_API_ANALYZE_ENDPOINT': 'https://${resourceGroup().location}.api.cognitive.microsoft.com/vision/v3.2/analyze'
       'JWT_PRIVATE_KEY_VALUE': '${jwtPrivateKeyValue}'
       'JWT_PUBLIC_KEY_VALUE': '${jwtPublicKeyValue}'
