@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "prebuild": "rm -rf ../../wwwroot/* && cp -r . ../../wwwroot",
+    "prebuild": "rm -rf node_modules && rm -rf ../../wwwroot/* && cp -r . ../../wwwroot",
     "build": "cd ../../wwwroot && npm i",
     "start": "set NODE_ENV=production&& node index.js",
     "start:dev": "set NODE_ENV=development&& nodemon index.js",
