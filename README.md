@@ -11,6 +11,7 @@
   - [Image requirements](#image-requirements)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
+  - [Create RSA key pair](#create-rsa-key-pair)
   - [Azure resources](#azure-resources)
   - [API (Node.js) project](#api-nodejs-project)
   - [Web (React) project](#web-react-project)
@@ -51,6 +52,16 @@ Please follow the step-by-step instructions below to setup your development envi
 1. Node.js
 1. VS Code or any other IDE
 
+### Create RSA key pair
+
+1. Create a RSA256 (Private and Public RSA Key pair) for JWT tokens using the following commands.
+
+   ```bash
+   ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
+   # Don't add passphrase
+   openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub
+   ```
+
 ### Azure resources
 
 1. :open_file_folder: Navigate to `src/operations/bicep` directory.
@@ -61,6 +72,8 @@ Please follow the step-by-step instructions below to setup your development envi
 - `LOCATION_NAME` - The name of the Azure location where you would like to have your resoures provisioned. For example, `westus2`.  
   :pushpin: Use the command `az account list-locations -o table` to find all the locations that are supported.
 - `PRINCIPAL_ID` - The object ID of the Azure AD user or (ideally) group who will be assigned permissions to read, write, delete secrets in Azure Key Vault (which are essentially Get, List, Set, Delete secret management operations).
+- `JWT_PRIVATE_KEY_VALUE` - The RSA private key vaule with newlines replaced with `\n`
+- `JWT_PUBLIC_KEY_VALUE` - The RSA public key vaule with newlines replaced with `\n`
 
 Example script to use in Bash shell:
 
@@ -68,30 +81,23 @@ Example script to use in Bash shell:
 export APP_NAME=visualyzer
 export LOCATION_NAME=westus2
 export PRINCIPAL_ID=<PASTE_PRINCIPAL_ID_HERE>
+export JWT_PRIVATE_KEY_VALUE='<PASTE_THE_PRIVATE_KEY_VALUE>'
+export JWT_PUBLIC_KEY_VALUE='<PASTE_THE_PUBLIC_KEY_VALUE>'
 ./provision.sh
 ```
 
 ### API (Node.js) project
 
 1. :open_file_folder: Navigate to `src/api` directory.
-1. Create a RSA256 (Private and Public RSA Key pair) for JWT tokens using the following commands.
-
-   ```bash
-   ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS256.key
-   # Don't add passphrase
-   openssl rsa -in jwtRS256.key -pubout -outform PEM -out jwtRS256.key.pub
-   ```
 
 1. Create an `.env` file in the folder by suppling values to the following variables. Replace `<...>` with appropriate values.
 
    ```env
-   NODE_ENV=development
-   PORT=3000
-   KEY_VAULT_NAME=<APP_NAME>-kv
-   AZURE_COMPUTER_VISION_API_ANALYZE_ENDPOINT=<PASTE_THE_COMPUTER_VISION_API_BASEURL>/vision/v3.2/analyze
+   AZURE_COMPUTER_VISION_API_ANALYZE_ENDPOINT=https://<LOCATION_NAME>.api.cognitive.microsoft.com/vision/v3.2/analyze
    JWT_PRIVATE_KEY_VALUE=<PASTE_THE_JWT_PRIVATE_KEY_VALUE_AFTER_REPLACING_NEWLINES_WITH_\n>
    JWT_PUBLIC_KEY_VALUE=<PASTE_THE_JWT_PUBLIC_KEY_VALUE_AFTER_REPLACING_NEWLINES_WITH_\n>
    JWT_VALIDITY_IN_SECONDS=3600
+   KEY_VAULT_NAME=<APP_NAME>-kv
    ```
 
    You can also find the Computer Vision API endpoint to be provided to `COMPUTER_VISION_API_ANALYZE_ENDPOINT` from the API documentation [here](https://westus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-2/) by selecting the region you supplied while creating the Azure resources.

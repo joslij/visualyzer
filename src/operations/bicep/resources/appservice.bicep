@@ -1,5 +1,7 @@
 param appname string
-param keyVault object
+param keyVaultName string
+param jwtPrivateKeyValue string
+param jwtPublicKeyValue string
 
 resource plan 'Microsoft.Web/serverfarms@2020-12-01' = {
   name: '${appname}-appservice-plan'
@@ -19,6 +21,9 @@ resource plan 'Microsoft.Web/serverfarms@2020-12-01' = {
 resource webApp 'Microsoft.Web/sites@2018-11-01' = {
   name: '${appname}'
   location: resourceGroup().location
+  identity: {
+    type: 'SystemAssigned'
+  }
   properties: {
     serverFarmId: plan.id
     siteConfig: {
@@ -33,9 +38,12 @@ resource webApp 'Microsoft.Web/sites@2018-11-01' = {
   resource webApp_Settings 'config@2020-12-01' = {
     name: 'appsettings'
     properties: {
-      'KEY_VAULT_NAME': '${keyVault.name}'
-      'WEBSITE_WEBDEPLOY_USE_SCM': 'true'
       'API_BASE_URL': '/api'
+      'AZURE_COMPUTER_VISION_API_ANALYZE_ENDPOINT': 'https://${resourceGroup().location}.api.cognitive.microsoft.com/vision/v3.2/analyze'
+      'JWT_PRIVATE_KEY_VALUE': '${jwtPrivateKeyValue}'
+      'JWT_PUBLIC_KEY_VALUE': '${jwtPublicKeyValue}'
+      'KEY_VAULT_NAME': '${keyVaultName}'
+      'WEBSITE_WEBDEPLOY_USE_SCM': 'true'
     }
   }
 }

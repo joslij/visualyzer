@@ -12,10 +12,32 @@ param location string
 @description('The object ID of the Azure AD user or group who is provisioning the resources')
 param principalId string
 
+@minLength(1)
+@description('The RSA private key value')
+param jwtPrivateKeyValue string
+
+@minLength(1)
+@description('The RSA public key value')
+param jwtPublicKeyValue string
+
+var keyVaultName = '${appname}-kv'
+
 // Resource Group
 resource rg 'Microsoft.Resources/resourceGroups@2021-01-01' = {
   name: '${appname}-rg'
   location: location
+}
+
+// App service plan and app
+module appService 'resources/appservice.bicep' = {
+  name: '${appname}-resources-appservice'
+  scope: rg
+  params: {
+    appname: appname
+    keyVaultName: keyVaultName
+    jwtPrivateKeyValue: jwtPrivateKeyValue
+    jwtPublicKeyValue: jwtPublicKeyValue
+  }
 }
 
 // Storage Account
@@ -24,19 +46,6 @@ module storageAccount 'resources/storageaccount.bicep' = {
   scope: rg
   params: {
     appname: appname
-  }
-}
-
-// Key Vault
-module keyVault 'resources/keyvault.bicep' = {
-  name: '${appname}-resources-kv'
-  scope: rg
-  params: {
-    appname: appname
-    principalId: principalId
-    storageAccount: storageAccount.outputs.storageAccount
-    cosmosDbAccount: cosmosDbAccount.outputs.cosmosDbAccount
-    computerVision: computerVision.outputs.computerVision
   }
 }
 
@@ -58,12 +67,17 @@ module computerVision 'resources/computervision.bicep' = {
   }
 }
 
-// App service plan and app
-module appService 'resources/appservice.bicep' = {
-  name: '${appname}-resources-appservice'
+// Key Vault
+module keyVault 'resources/keyvault.bicep' = {
+  name: '${appname}-resources-kv'
   scope: rg
   params: {
     appname: appname
-    keyVault: keyVault.outputs.keyVault
+    resourceName: keyVaultName
+    principalId: principalId
+    storageAccount: storageAccount.outputs.storageAccount
+    cosmosDbAccount: cosmosDbAccount.outputs.cosmosDbAccount
+    computerVision: computerVision.outputs.computerVision
+    webApp: appService.outputs.webApp
   }
 }

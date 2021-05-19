@@ -1,8 +1,10 @@
 param appname string
+param resourceName string
 param principalId string
 param storageAccount object
 param cosmosDbAccount object
 param computerVision object
+param webApp object
 
 var secrets = [
   'get'
@@ -12,7 +14,7 @@ var secrets = [
 ]
 
 resource keyVault 'Microsoft.KeyVault/vaults@2021-04-01-preview' = {
-  name: '${appname}-kv'
+  name: resourceName
   location: resourceGroup().location
   properties: {
     tenantId: subscription().tenantId
@@ -27,6 +29,13 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-04-01-preview' = {
           secrets: secrets
         }
         tenantId: subscription().tenantId
+      }
+      {
+        objectId: reference(webApp.id, webApp.apiVersion, 'Full').identity.principalId
+        permissions: {
+          secrets: secrets
+        }
+        tenantId: reference(webApp.id, webApp.apiVersion, 'Full').identity.tenantId
       }
     ]
   }
