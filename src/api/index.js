@@ -1,6 +1,6 @@
 require("dotenv").config();
 const http = require("http");
-const app = require("./src/app");
+const app = require("./app/app");
 
 const ENV = process.env.NODE_ENV;
 const PORT = ENV.trim() === "production" ? 80 : 3000;

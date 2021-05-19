@@ -26,13 +26,13 @@ app.use(compression());
 // :for protection against well-know web vulnerabilities
 app.use(helmet());
 // :for serving static assets
-app.use(express.static(path.resolve(__dirname, "web")));
+app.use(express.static(path.resolve(__dirname, "../", "web")));
 
 // ---- Endpoints definition ----
 // :for all non-api requests, serve static files from web folder
 if (ENV === "production") {
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "web", "index.html"));
+    res.sendFile(path.resolve(__dirname, "../", "web", "index.html"));
   });
 }
 
