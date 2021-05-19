@@ -1,4 +1,4 @@
-const apiUrl = VISAPPCONFIG.apiUrl;
+const apiUrl = window.VISAPPCONFIG.apiUrl;
 
 export const getUserProfile = async (userId, token) => {
   let response = null;

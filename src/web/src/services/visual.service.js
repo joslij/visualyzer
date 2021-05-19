@@ -1,4 +1,4 @@
-const apiUrl = VISAPPCONFIG.apiUrl;
+const apiUrl = window.VISAPPCONFIG.apiUrl;
 
 export const getVisualCategories = async () => {
   let response = null;
