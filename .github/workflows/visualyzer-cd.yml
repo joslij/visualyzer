@@ -7,6 +7,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: "visualyzer"
+  PATH_DEPLOY: "./wwwroot"
   PATH_API: "./src/api"
   PATH_WEB: "./src/web"
   NODE_VERSION: "14.x"
@@ -26,7 +27,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - name: Install dependencies
+      - name: Install API dependencies
         working-directory: ${{ env.PATH_API }}
         run: npm ci
       - name: Run API test & build
@@ -34,12 +35,16 @@ jobs:
         run: |
           npm run test
           npm run build
+      - name: Install Web dependencies
+        working-directory: ${{ env.PATH_WEB }}
+        run: npm ci
       - name: Run Web test & build
         working-directory: ${{ env.PATH_WEB }}
         run: |
           npm run test
           npm run build
       - name: "Deploy to Azure WebApp"
+        working-directory: ${{ env.PATH_DEPLOY }}
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
