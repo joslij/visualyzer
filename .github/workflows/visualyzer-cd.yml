@@ -7,19 +7,15 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: "visualyzer"
-  AZURE_APP_PACKAGE_PATH_API: "./src/api"
-  AZURE_APP_PACKAGE_PATH_WEB: "./src/web"
+  PATH_API: "./src/api"
+  PATH_WEB: "./src/web"
   NODE_VERSION: "14.x"
 
 jobs:
-  cd-api:
-    name: Deploy - Visualyzer API
+  cd-api-web:
+    name: Deploy - Visualyzer App
 
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ${{ env.AZURE_APP_PACKAGE_PATH_API }}
 
     environment: production
 
@@ -30,14 +26,19 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - name: npm install, build, and test
+      - name: Run API test & build
+        working-directory: ${{ env.PATH_API }}
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run test
+          npm run build
+      - name: Run Web test & build
+        working-directory: ${{ env.PATH_WEB }}
+        run: |
+          npm run test
+          npm run build
       - name: "Deploy to Azure WebApp"
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ env.AZURE_APP_PACKAGE_PATH_API }}
+          package: ${{ env.AZURE_WEBAPP_NAME }}

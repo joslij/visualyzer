@@ -29,7 +29,7 @@ app.use(helmet());
 app.use(express.static(path.resolve(__dirname, "../", "web")));
 
 // ---- Endpoints definition ----
-// :for all non-api requests, serve static files from web folder
+// :for all non-api requests, serve static files from the web folder
 if (ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../", "web", "index.html"));
