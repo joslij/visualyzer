@@ -5,9 +5,9 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "prebuild": "rm -rf node_modules && rm -rf ../../wwwroot/*",
+    "prebuild": "rm -rf ../../wwwroot/* && cp -r . ../../wwwroot",
     "build": "cd ../../wwwroot && npm ci",
-    "test": "cd ../../wwwroot && jest --no-cache --passWithNoTests",
+    "test": "jest --no-cache --passWithNoTests",
     "start": "set NODE_ENV=production&& node index.js",
     "build:ci": "npm i",
     "test:ci": "jest --no-cache --passWithNoTests",

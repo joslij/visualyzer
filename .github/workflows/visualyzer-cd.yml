@@ -26,6 +26,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
+      - name: Install dependencies
+        working-directory: ${{ env.PATH_API }}
+        run: npm ci
       - name: Run API test & build
         working-directory: ${{ env.PATH_API }}
         run: |
