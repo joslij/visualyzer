@@ -4,7 +4,7 @@
   "description": "The Visualyzer web application",
   "private": true,
   "scripts": {
-    "prebuild": "rm -rf ../../wwwroot/web/* && cd ../../wwwroot && mkdir web",
+    "prebuild": "rm -rf ../../wwwroot/web && cd ../../wwwroot && mkdir web",
     "build": "webpack --config webpack.prod.js",
     "postbuild": "cp -r dist/* ../../wwwroot/web",
     "build:dev": "webpack --config webpack.dev.js",
