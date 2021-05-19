@@ -29,8 +29,8 @@ jobs:
       - name: Run API test & build
         working-directory: ${{ env.PATH_API }}
         run: |
-          npm run test
           npm run build
+          npm run test
       - name: Run Web test & build
         working-directory: ${{ env.PATH_WEB }}
         run: |
