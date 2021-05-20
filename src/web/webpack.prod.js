@@ -8,10 +8,7 @@ module.exports = merge(common, {
   devtool: "nosources-source-map",
   plugins: [
     new webpack.DefinePlugin({
-      VISAPPCONFIG: JSON.stringify({
-        production: true,
-        apiUrl: "/api",
-      }),
+      APPCONFIG_APIURL: JSON.stringify("/api"),
     }),
   ],
   optimization: {

@@ -7,10 +7,7 @@ module.exports = merge(common, {
   devtool: "inline-source-map",
   plugins: [
     new webpack.DefinePlugin({
-      VISAPPCONFIG: JSON.stringify({
-        production: false,
-        apiUrl: "http://localhost:3000/api",
-      }),
+      APPCONFIG_APIURL: JSON.stringify("http://localhost:3000/api"),
     }),
   ],
   devServer: {

@@ -1,6 +1,6 @@
 module.exports = {
   globals: {
-    VISAPPCONFIG: true,
+    APPCONFIG_APIURL: true,
   },
   env: {
     browser: true,
