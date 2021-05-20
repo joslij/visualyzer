@@ -1,4 +1,7 @@
 module.exports = {
+  globals: {
+    VISAPPCONFIG: true,
+  },
   env: {
     browser: true,
     node: true,
