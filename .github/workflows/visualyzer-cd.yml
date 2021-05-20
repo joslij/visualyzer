@@ -14,7 +14,7 @@ env:
 
 jobs:
   cd-api-web:
-    name: Test, Build, Deploy local - Visualyzer App
+    name: Deploy - Visualyzer App
 
     runs-on: ubuntu-latest
 

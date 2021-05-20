@@ -1,6 +1,6 @@
 ![logo](./docs/images/visualyzer-image.png "Visualyzer")
 
-![CI workflow](https://github.com/joslij/visualyzer/actions/workflows/visualyzer-ci.yml/badge.svg)
+![CI](https://github.com/joslij/visualyzer/actions/workflows/visualyzer-ci.yml/badge.svg) ![CD](https://github.com/joslij/visualyzer/actions/workflows/visualyzer-cd.yml/badge.svg)
 
 **Visual<sub>yzer</sub>** is an application that will analyze your visuals and give insights by identifying famous landmarks and people. It will also try to identify visual features involved in the image such as animals, buildings, drinks, food, indoor, outdoor, people, plants, sky, etc.
 
@@ -79,7 +79,7 @@ Example script to use in Bash shell:
 
 ```bash
 export APP_NAME=visualyzer
-export LOCATION_NAME=westus2
+export LOCATION_NAME=<westus2|other region>
 export PRINCIPAL_ID=<PASTE_PRINCIPAL_ID_HERE>
 export JWT_PRIVATE_KEY_VALUE='<PASTE_THE_PRIVATE_KEY_VALUE>'
 export JWT_PUBLIC_KEY_VALUE='<PASTE_THE_PUBLIC_KEY_VALUE>'
