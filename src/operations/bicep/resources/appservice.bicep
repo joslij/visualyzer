@@ -1,5 +1,6 @@
 param appname string
 param keyVaultName string
+param storageAccountName string
 param jwtPrivateKeyValue string
 param jwtPublicKeyValue string
 
@@ -44,6 +45,7 @@ resource webApp 'Microsoft.Web/sites@2018-11-01' = {
       'KEY_VAULT_NAME': '${keyVaultName}'
       'NODE_ENV': 'production'
       'PORT': '80'
+      'STORAGE_ACCOUNT_HOST': '${storageAccountName}.blob.core.windows.net'
       'WEBSITE_WEBDEPLOY_USE_SCM': 'true'
     }
   }

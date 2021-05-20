@@ -35,6 +35,7 @@ module appService 'resources/appservice.bicep' = {
   params: {
     appname: appname
     keyVaultName: keyVaultName
+    storageAccountName: storageAccount.outputs.storageAccount.name
     jwtPrivateKeyValue: jwtPrivateKeyValue
     jwtPublicKeyValue: jwtPublicKeyValue
   }

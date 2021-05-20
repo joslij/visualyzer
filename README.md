@@ -98,6 +98,7 @@ export JWT_PUBLIC_KEY_VALUE='<PASTE_THE_PUBLIC_KEY_VALUE>'
    JWT_PUBLIC_KEY_VALUE=<PASTE_THE_JWT_PUBLIC_KEY_VALUE_AFTER_REPLACING_NEWLINES_WITH_\n>
    JWT_VALIDITY_IN_SECONDS=3600
    KEY_VAULT_NAME=<APP_NAME>-kv
+   STORAGE_ACCOUNT_HOST=<APP_NAME>stracc.blob.core.windows.net
    ```
 
    You can also find the Computer Vision API endpoint to be provided to `COMPUTER_VISION_API_ANALYZE_ENDPOINT` from the API documentation [here](https://westus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-2/) by selecting the region you supplied while creating the Azure resources.

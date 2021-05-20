@@ -24,7 +24,16 @@ app.use(morgan("combined"));
 // :for gzip/deflate compression of responses from all routes
 app.use(compression());
 // :for protection against well-know web vulnerabilities
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "img-src": ["'self'", process.env.STORAGE_ACCOUNT_HOST],
+      },
+    },
+  })
+);
 // :for serving static assets
 app.use(express.static(path.resolve(__dirname, "../", "web")));
 
