@@ -1,4 +1,4 @@
-const apiUrl = window.VISAPPCONFIG.apiUrl;
+const apiUrl = VISAPPCONFIG.apiUrl;
 
 export const login = async (email, password) => {
   let response = null;
