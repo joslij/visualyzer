@@ -43,6 +43,7 @@ resource webApp 'Microsoft.Web/sites@2018-11-01' = {
       'JWT_PUBLIC_KEY_VALUE': '${jwtPublicKeyValue}'
       'KEY_VAULT_NAME': '${keyVaultName}'
       'NODE_ENV': 'production'
+      'PORT': '80'
       'WEBSITE_WEBDEPLOY_USE_SCM': 'true'
     }
   }

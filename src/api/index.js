@@ -3,7 +3,7 @@ const http = require("http");
 const app = require("./app/app");
 
 const ENV = process.env.NODE_ENV;
-const PORT = ENV.trim() === "production" ? 80 : 3000;
+const PORT = ENV.trim() === "production" ? process.env?.PORT ?? 80 : 3000;
 
 const server = http.createServer(app);
 server.listen(PORT, () => {
