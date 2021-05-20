@@ -29,18 +29,17 @@ app.use(helmet());
 app.use(express.static(path.resolve(__dirname, "../", "web")));
 
 // ---- Endpoints definition ----
-// :for all non-api requests, serve static files from the web folder
-if (ENV === "production") {
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../", "web", "index.html"));
-  });
-}
-
 // :for api/auth requests (i.e. register and login)
 app.use("/api", authRoute);
 // :for api/user requests
 app.use("/api", userRoute);
 // :for api/visuals requests
 app.use("/api", visualRoute);
+// :for all non-api requests, serve static files from the web folder
+if (ENV === "production") {
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../", "web", "index.html"));
+  });
+}
 
 module.exports = app;
