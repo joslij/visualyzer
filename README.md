@@ -54,15 +54,15 @@ Please follow the step-by-step instructions below to setup your development envi
 
 ### Project structure
 
-The application is organized into the following folder structure:  
+The application is organized into the following folder structure:
 
     .
     ├── .github                 # Contains the github workflows and templates
     ├── docs                    # General documentation
-    ├── src                     # The application code base  
-    │   ├── api                 # The Node.js application code base 
-    │   ├── operations          # The IaC code 
-    │   └── web                 # The React application  
+    ├── src                     # The application code base
+    │   ├── api                 # The Node.js application code base
+    │   ├── operations          # The IaC code
+    │   └── web                 # The React application
     └── ...
 
 ### Create RSA key pair
@@ -160,6 +160,7 @@ Please read their privacy policy [here](https://azure.microsoft.com/en-gb/suppor
 - [Awesome README's](https://github.com/matiassingers/awesome-readme)
 
 ### KB articles and books
+
 - [React Patterns](https://javascript.plainenglish.io/5-advanced-react-patterns-a6b7624267a6)
 - [Functional programming in JavaScript](https://www.manning.com/books/functional-programming-in-javascript)
 - [You Don't Know JS Yet](https://github.com/getify/You-Dont-Know-JS)
