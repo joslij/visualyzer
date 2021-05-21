@@ -8,6 +8,7 @@
 
 - [How it works](#how-it-works)
   - [Technologies](#technologies)
+  - [Architecture](#architecture)
   - [Image requirements](#image-requirements)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
