@@ -36,6 +36,12 @@ The application uses three main technologies:
 - **Node.js**: the API application that serves the SPA. It consists of two resources - users and visuals.
 - **Azure**: hosts the application, database, files, and analyze the images.
 
+### Architecture
+
+The below diagram shows the technical architecture.
+
+![architecture](./docs/images/visualyzer.architecture.png "Visualyzer Architecture")
+
 ### Image requirements
 
 - The image must be presented in JPEG, PNG, GIF, or BMP format
