@@ -52,6 +52,19 @@ Please follow the step-by-step instructions below to setup your development envi
 1. Node.js
 1. VS Code or any other IDE
 
+### Project structure
+
+The application is organized into the following folder structure:  
+
+    .
+    ├── .github                 # Contains the github workflows and templates
+    ├── docs                    # General documentation
+    ├── src                     # The application code base  
+    │   ├── api                 # The Node.js application code base 
+    │   ├── operations          # The IaC code 
+    │   └── web                 # The React application  
+    └── ...
+
 ### Create RSA key pair
 
 1. Create a RSA256 (Private and Public RSA Key pair) for JWT tokens using the following commands.
@@ -145,3 +158,9 @@ Please read their privacy policy [here](https://azure.microsoft.com/en-gb/suppor
 
 - [GitHub emojis](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
 - [Awesome README's](https://github.com/matiassingers/awesome-readme)
+
+### KB articles and books
+- [React Patterns](https://javascript.plainenglish.io/5-advanced-react-patterns-a6b7624267a6)
+- [Functional programming in JavaScript](https://www.manning.com/books/functional-programming-in-javascript)
+- [You Don't Know JS Yet](https://github.com/getify/You-Dont-Know-JS)
+- [Practical modern JavaScript](https://github.com/mjavascript/practical-modern-javascript)
