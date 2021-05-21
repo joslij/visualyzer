@@ -11,12 +11,13 @@
   - [Image requirements](#image-requirements)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
+  - [Project structure](#project-structure)
   - [Create RSA key pair](#create-rsa-key-pair)
   - [Azure resources](#azure-resources)
   - [API (Node.js) project](#api-nodejs-project)
   - [Web (React) project](#web-react-project)
 - [Disclaimer](#disclaimer)
-- [References and KB](#references-and-kb)
+- [References](#references)
 
 ## How it works
 
@@ -62,7 +63,8 @@ The application is organized into the following folder structure:
     ├── src                     # The application code base
     │   ├── api                 # The Node.js application code base
     │   ├── operations          # The IaC code
-    │   └── web                 # The React application
+    │   ├── web                 # The React application
+    │   ├── api                 # The Node.js application code
     └── ...
 
 ### Create RSA key pair
@@ -141,11 +143,15 @@ According to Microsoft, they do not store your uploaded images or videos after t
 
 Please read their privacy policy [here](https://azure.microsoft.com/en-gb/support/legal/cognitive-services-compliance-and-privacy/).
 
-## References and KB
+## References
 
 ### Node.js
 
 - [Express and Node.js app deployment](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment)
+
+### React
+
+- [React Patterns](https://javascript.plainenglish.io/5-advanced-react-patterns-a6b7624267a6)
 
 ### Azure with Node.js
 
@@ -159,9 +165,8 @@ Please read their privacy policy [here](https://azure.microsoft.com/en-gb/suppor
 - [GitHub emojis](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
 - [Awesome README's](https://github.com/matiassingers/awesome-readme)
 
-### KB articles and books
+### Books and articles
 
-- [React Patterns](https://javascript.plainenglish.io/5-advanced-react-patterns-a6b7624267a6)
 - [Functional programming in JavaScript](https://www.manning.com/books/functional-programming-in-javascript)
 - [You Don't Know JS Yet](https://github.com/getify/You-Dont-Know-JS)
 - [Practical modern JavaScript](https://github.com/mjavascript/practical-modern-javascript)
