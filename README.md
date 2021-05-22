@@ -1,4 +1,4 @@
-<img src="./docs/images/visualyzer-image.png" width="50%" height="50%" alt="Visualyzer" />
+<img src="./docs/images/visualyzer-image.png" width="30%" height="30%" alt="Visualyzer" />
 
 ![CI](https://github.com/joslij/visualyzer/actions/workflows/visualyzer-ci.yml/badge.svg) ![CD](https://github.com/joslij/visualyzer/actions/workflows/visualyzer-cd.yml/badge.svg)
 
