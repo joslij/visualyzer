@@ -1,4 +1,4 @@
-![logo](./docs/images/visualyzer-image.png "Visualyzer")
+![logo](./docs/images/visualyzer-image.png = 100x100 | | "Visualyzer")
 
 ![CI](https://github.com/joslij/visualyzer/actions/workflows/visualyzer-ci.yml/badge.svg) ![CD](https://github.com/joslij/visualyzer/actions/workflows/visualyzer-cd.yml/badge.svg)
 
