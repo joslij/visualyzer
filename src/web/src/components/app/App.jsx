@@ -130,10 +130,27 @@ const App = () => {
     }
   };
 
-  const handleVisualItemClick = async (type, id) => {
+  const handleSelectedVisualChange = async (type, id) => {
     setSelectedVisual({
       type,
       id,
+    });
+  };
+
+  const handleVisualAddition = async (dataItem) => {
+    setUserVisuals({
+      ...userVisuals,
+      data: [dataItem, ...userVisuals.data],
+    });
+  };
+
+  const handleVisualDeletion = async (dataItem) => {
+    const filteredData = userVisuals.data.filter((item) => {
+      return item.id !== dataItem.id;
+    });
+    setUserVisuals({
+      ...userVisuals,
+      data: filteredData,
     });
   };
 
@@ -155,8 +172,8 @@ const App = () => {
               handleSelectedCategoryChange={(categoryName) => {
                 handleSelectedCategoryChange("public", categoryName);
               }}
-              handleVisualItemClick={(visualId) => {
-                handleVisualItemClick("public", visualId);
+              handleSelectedVisualChange={(visualId) => {
+                handleSelectedVisualChange("public", visualId);
               }}
             />
             <RestrictedRoute
@@ -190,8 +207,8 @@ const App = () => {
               handleSelectedCategoryChange={(categoryName) => {
                 handleSelectedCategoryChange("user", categoryName);
               }}
-              handleVisualItemClick={(visualId) => {
-                handleVisualItemClick("user", visualId);
+              handleSelectedVisualChange={(visualId) => {
+                handleSelectedVisualChange("user", visualId);
               }}
             />
             <PrivateRoute
@@ -199,6 +216,10 @@ const App = () => {
               path={AppRoutes.analyzeVisuals.path}
               component={VisualAnalyzeScreen}
               userIsLoggedIn={isUserIsLoggedIn()}
+              handleVisualAddition={handleVisualAddition}
+              handleSelectedVisualChange={(visualId) => {
+                handleSelectedVisualChange("user", visualId);
+              }}
             />
             <PrivateRoute
               exact
@@ -207,6 +228,7 @@ const App = () => {
               type="user"
               id={selectedVisual.id}
               userIsLoggedIn={isUserIsLoggedIn()}
+              handleVisualDeletion={handleVisualDeletion}
             />
             <PublicRoute
               exact

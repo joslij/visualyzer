@@ -15,7 +15,10 @@ import AuthContext from "../../../contexts/AuthContext";
 import { analyzeImage } from "../../../../services/";
 import { AppRoutes } from "../../../routes";
 
-export const VisualAnalyzeScreen = () => {
+export const VisualAnalyzeScreen = ({
+  handleVisualAddition,
+  handleSelectedVisualChange,
+}) => {
   const [formData, setFormData] = useState({
     url: "",
     file: "",
@@ -98,6 +101,8 @@ export const VisualAnalyzeScreen = () => {
 
       if (!isSuccessful) {
         errors = [apiResponse.message || "Failed to get results"];
+      } else {
+        await handleVisualAddition(apiResponse.data);
       }
 
       setFormData({
@@ -187,7 +192,12 @@ export const VisualAnalyzeScreen = () => {
           <Divider />
           <div>
             Visual processed successfully. Find details{" "}
-            <Link to={AppRoutes.visualEdit.link(formData.analysisData.id)}>
+            <Link
+              onClick={() =>
+                handleSelectedVisualChange(formData.analysisData.id)
+              }
+              to={AppRoutes.visualEdit.link(formData.analysisData.id)}
+            >
               here
             </Link>
           </div>

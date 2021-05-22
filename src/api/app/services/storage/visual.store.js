@@ -6,6 +6,9 @@ const { BlobServiceClient } = require("@azure/storage-blob");
 
 const { getConfigValue } = require("../../helpers/config.helper");
 
+const ONE_MEGABYTE = 1024 * 1024;
+const uploadOptions = { bufferSize: 4 * ONE_MEGABYTE, maxBuffers: 20 };
+
 let connectionString = null;
 let blobServiceClient = null;
 let containerClient = null;
@@ -42,7 +45,12 @@ const saveImageToAzureStorage = async (
   await initialize();
 
   const blobClient = containerClient.getBlockBlobClient(fileName);
-  await blobClient.uploadFile(filePath);
+
+  await blobClient.uploadStream(
+    fs.createReadStream(filePath),
+    uploadOptions.bufferSize,
+    uploadOptions.maxBuffers
+  );
 
   if (removeLocalFile) {
     fs.unlink(filePath, (err) => {});

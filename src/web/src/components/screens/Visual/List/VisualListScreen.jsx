@@ -8,7 +8,7 @@ export const VisualListScreen = ({
   data,
   selectedCategory,
   handleSelectedCategoryChange,
-  handleVisualItemClick,
+  handleSelectedVisualChange,
 }) => {
   return (
     <>
@@ -25,7 +25,7 @@ export const VisualListScreen = ({
               key={item.id}
               type={type}
               item={item}
-              handleVisualItemClick={handleVisualItemClick}
+              handleSelectedVisualChange={handleSelectedVisualChange}
             />
           ))}
         {(!data || data.length === 0) && (

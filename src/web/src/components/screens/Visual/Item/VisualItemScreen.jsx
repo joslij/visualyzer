@@ -5,7 +5,11 @@ import "./VisualItemScreen.scss";
 
 import { AppRoutes } from "../../../routes";
 
-export const VisualItemScreen = ({ type, item, handleVisualItemClick }) => {
+export const VisualItemScreen = ({
+  type,
+  item,
+  handleSelectedVisualChange,
+}) => {
   const {
     id,
     url,
@@ -44,7 +48,7 @@ export const VisualItemScreen = ({ type, item, handleVisualItemClick }) => {
           ? AppRoutes.visualDetails.link(id)
           : AppRoutes.visualEdit.link(id)
       }
-      onClick={() => handleVisualItemClick(id)}
+      onClick={() => handleSelectedVisualChange(id)}
     >
       <Image src={url} width="290px" height="200px"></Image>
       <Card.Content>

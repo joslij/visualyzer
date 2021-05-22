@@ -28,7 +28,7 @@ import dummyUserAvatar from "../../../../assets/wireframe/dummy-user.png";
 
 import AuthContext from "../../../contexts/AuthContext";
 
-export const VisualItemDetailsScreen = ({ type, id }) => {
+export const VisualItemDetailsScreen = ({ type, id, handleVisualDeletion }) => {
   if (!id) {
     ({ id } = useParams());
   }
@@ -97,13 +97,20 @@ export const VisualItemDetailsScreen = ({ type, id }) => {
       ...visual,
       loading: true,
     });
+
     const apiResponse = await deleteVisual(authContext.token, id);
+    const deleted = apiResponse.statusCode === 204;
+
+    if (deleted) {
+      handleVisualDeletion(visual.data);
+    }
+
     setVisual({
       ...visual,
       loading: false,
       data: apiResponse?.data ?? null,
       message: apiResponse?.message ?? null,
-      deleted: apiResponse.statusCode === 204,
+      deleted: deleted,
     });
   };
 
