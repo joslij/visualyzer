@@ -87,7 +87,7 @@ The application is organized into the following folder structure:
 
 1. :open_file_folder: Navigate to `src/operations/bicep` directory.
 1. Run `az login` in a shell (PowerShell/Bash) to login to your Azure subscription.
-1. Run `./provision.sh` by supplying values to the following three variables in order to create the resources.
+1. Run `./provision.sh` by supplying values to the following variables in order to create the resources.
 
 - `APP_NAME` - The name of the application. It will be used as prefix for resource names. For example, `visualyzer`.
 - `LOCATION_NAME` - The name of the Azure location where you would like to have your resoures provisioned. For example, `westus2`.  
