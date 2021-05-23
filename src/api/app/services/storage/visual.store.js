@@ -17,10 +17,9 @@ const containerName = "images";
 const initialize = async () => {
   if (!connectionString) {
     connectionString = await getConfigValue("StorageConnectionString");
-    blobServiceClient =
-      BlobServiceClient.fromConnectionString(connectionString);
-    containerClient = blobServiceClient.getContainerClient(containerName);
   }
+  blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
+  containerClient = blobServiceClient.getContainerClient(containerName);
 };
 
 const saveImageToLocalStorage = async (url) => {
