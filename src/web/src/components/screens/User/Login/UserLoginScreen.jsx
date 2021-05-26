@@ -121,8 +121,8 @@ export const UserLoginScreen = () => {
         <Icon name="help circle" />
         <a href="/register">
           <b>Register here</b>
-        </a>{" "}
-        if you don't have an account.
+        </a>
+        &nbsp;if you don't have an account.
       </Message>
     </Segment>
   );

@@ -191,7 +191,7 @@ export const VisualAnalyzeScreen = ({
         <>
           <Divider />
           <div>
-            Visual processed successfully. Find details{" "}
+            Visual processed successfully. Find details&nbsp;
             <Link
               onClick={() =>
                 handleSelectedVisualChange(formData.analysisData.id)

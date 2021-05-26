@@ -3,4 +3,9 @@ import ReactDOM from "react-dom";
 import "semantic-ui-css/semantic.min.css";
 import App from "./components/app";
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.querySelector("#root")
+);

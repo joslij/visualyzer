@@ -1,13 +1,7 @@
 import { Route } from "react-router-dom";
 
-export const PublicRoute = ({
-  path,
-  component: Component,
-  ...componentProps
-}) => {
+export const PublicRoute = ({ path, render: renderProp }) => {
   return (
-    <Route path={path} exact>
-      <Component {...componentProps} />
-    </Route>
+    <Route exact path={path} render={(routeProps) => renderProp(routeProps)} />
   );
 };

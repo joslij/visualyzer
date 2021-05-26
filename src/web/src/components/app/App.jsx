@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import "./App.scss";
-import { AppHeader, AppMenu, NotFound } from "../ui";
+import { AppHeader, AppMenu, NotFound, ErrorBoundary } from "../ui";
 import AuthContext from "../contexts/AuthContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -158,88 +158,96 @@ const App = () => {
     <AuthContext.Provider value={{ ...authData, setData: updateAuthData }}>
       <Router>
         <AppHeader />
-        <AppMenu user={authData.user} />
-        <div className="vis-app-body">
-          <Switch>
-            <PublicRoute
-              exact
-              path={AppRoutes.home.path}
-              component={VisualListScreen}
-              type="public"
-              categories={visualCategories}
-              selectedCategory={publicVisuals.selectedCategory}
-              data={publicVisuals.data}
-              handleSelectedCategoryChange={(categoryName) => {
-                handleSelectedCategoryChange("public", categoryName);
-              }}
-              handleSelectedVisualChange={(visualId) => {
-                handleSelectedVisualChange("public", visualId);
-              }}
-            />
-            <RestrictedRoute
-              exact
-              path={AppRoutes.login.path}
-              component={UserLoginScreen}
-              userIsLoggedIn={isUserIsLoggedIn()}
-            />
-            <RestrictedRoute
-              exact
-              path={AppRoutes.register.path}
-              component={UserRegisterScreen}
-              userIsLoggedIn={isUserIsLoggedIn()}
-            />
-            <PrivateRoute
-              exact
-              path={AppRoutes.dashboard.path}
-              component={UserDashboardScreen}
-              userIsLoggedIn={isUserIsLoggedIn()}
-              visuals={userVisuals.data}
-            />
-            <PrivateRoute
-              exact
-              path={AppRoutes.userVisuals.path}
-              component={VisualListScreen}
-              type="user"
-              userIsLoggedIn={isUserIsLoggedIn()}
-              categories={visualCategories}
-              selectedCategory={userVisuals.selectedCategory}
-              data={userVisuals.data}
-              handleSelectedCategoryChange={(categoryName) => {
-                handleSelectedCategoryChange("user", categoryName);
-              }}
-              handleSelectedVisualChange={(visualId) => {
-                handleSelectedVisualChange("user", visualId);
-              }}
-            />
-            <PrivateRoute
-              exact
-              path={AppRoutes.analyzeVisuals.path}
-              component={VisualAnalyzeScreen}
-              userIsLoggedIn={isUserIsLoggedIn()}
-              handleVisualAddition={handleVisualAddition}
-              handleSelectedVisualChange={(visualId) => {
-                handleSelectedVisualChange("user", visualId);
-              }}
-            />
-            <PrivateRoute
-              exact
-              path={AppRoutes.visualEdit.path}
-              component={VisualItemDetailsScreen}
-              type="user"
-              id={selectedVisual.id}
-              userIsLoggedIn={isUserIsLoggedIn()}
-              handleVisualDeletion={handleVisualDeletion}
-            />
-            <PublicRoute
-              exact
-              path={AppRoutes.visualDetails.path}
-              component={VisualItemDetailsScreen}
-              type="public"
-              id={selectedVisual.id}
-            />
-            <PublicRoute component={NotFound} />
-          </Switch>
-        </div>
+        <ErrorBoundary>
+          <AppMenu user={authData.user} />
+          <div className="vis-app-body">
+            <Switch>
+              <PublicRoute
+                exact
+                path={AppRoutes.home.path}
+                render={() => (
+                  <VisualListScreen
+                    type="public"
+                    categories={visualCategories}
+                    selectedCategory={publicVisuals.selectedCategory}
+                    data={publicVisuals.data}
+                    handleSelectedCategoryChange={(categoryName) => {
+                      handleSelectedCategoryChange("public", categoryName);
+                    }}
+                    handleSelectedVisualChange={(visualId) => {
+                      handleSelectedVisualChange("public", visualId);
+                    }}
+                  />
+                )}
+              />
+              <RestrictedRoute
+                exact
+                path={AppRoutes.login.path}
+                component={UserLoginScreen}
+                userIsLoggedIn={isUserIsLoggedIn()}
+              />
+              <RestrictedRoute
+                exact
+                path={AppRoutes.register.path}
+                component={UserRegisterScreen}
+                userIsLoggedIn={isUserIsLoggedIn()}
+              />
+              <PrivateRoute
+                exact
+                path={AppRoutes.dashboard.path}
+                component={UserDashboardScreen}
+                userIsLoggedIn={isUserIsLoggedIn()}
+                visuals={userVisuals.data}
+              />
+              <PrivateRoute
+                exact
+                path={AppRoutes.userVisuals.path}
+                component={VisualListScreen}
+                type="user"
+                userIsLoggedIn={isUserIsLoggedIn()}
+                categories={visualCategories}
+                selectedCategory={userVisuals.selectedCategory}
+                data={userVisuals.data}
+                handleSelectedCategoryChange={(categoryName) => {
+                  handleSelectedCategoryChange("user", categoryName);
+                }}
+                handleSelectedVisualChange={(visualId) => {
+                  handleSelectedVisualChange("user", visualId);
+                }}
+              />
+              <PrivateRoute
+                exact
+                path={AppRoutes.analyzeVisuals.path}
+                component={VisualAnalyzeScreen}
+                userIsLoggedIn={isUserIsLoggedIn()}
+                handleVisualAddition={handleVisualAddition}
+                handleSelectedVisualChange={(visualId) => {
+                  handleSelectedVisualChange("user", visualId);
+                }}
+              />
+              <PrivateRoute
+                exact
+                path={AppRoutes.visualEdit.path}
+                component={VisualItemDetailsScreen}
+                type="user"
+                id={selectedVisual.id}
+                userIsLoggedIn={isUserIsLoggedIn()}
+                handleVisualDeletion={handleVisualDeletion}
+              />
+              <PublicRoute
+                exact
+                path={AppRoutes.visualDetails.path}
+                render={() => (
+                  <VisualItemDetailsScreen
+                    type="public"
+                    id={selectedVisual.id}
+                  />
+                )}
+              />
+              <PublicRoute render={() => <NotFound />} />
+            </Switch>
+          </div>
+        </ErrorBoundary>
       </Router>
     </AuthContext.Provider>
   );
